@@ -15,7 +15,7 @@ class CategoriesApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CategoryResource(Category::all());
     }
@@ -31,7 +31,7 @@ class CategoriesApiController extends Controller
 
     public function show(Category $category)
     {
-        abort_if(Gate::denies('category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CategoryResource($category);
     }
@@ -47,7 +47,7 @@ class CategoriesApiController extends Controller
 
     public function destroy(Category $category)
     {
-        abort_if(Gate::denies('category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $category->delete();
 

@@ -22,7 +22,7 @@ class JobsController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('job_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Job::with(['city', 'specialization'])->select(sprintf('%s.*', (new Job)->table));
@@ -87,7 +87,7 @@ class JobsController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('job_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -113,7 +113,7 @@ class JobsController extends Controller
 
     public function edit(Job $job)
     {
-        abort_if(Gate::denies('job_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -145,7 +145,7 @@ class JobsController extends Controller
 
     public function show(Job $job)
     {
-        abort_if(Gate::denies('job_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $job->load('city', 'specialization');
 
@@ -154,7 +154,7 @@ class JobsController extends Controller
 
     public function destroy(Job $job)
     {
-        abort_if(Gate::denies('job_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $job->delete();
 
@@ -170,7 +170,7 @@ class JobsController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('job_create') && Gate::denies('job_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_create') && Gate::denies('job_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new Job();
         $model->id     = $request->input('crud_id', 0);

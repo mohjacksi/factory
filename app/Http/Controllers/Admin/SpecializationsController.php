@@ -16,7 +16,7 @@ class SpecializationsController extends Controller
 {
     public function index(Request $request)
     {
-        abort_if(Gate::denies('specialization_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Specialization::query()->select(sprintf('%s.*', (new Specialization)->table));
@@ -57,7 +57,7 @@ class SpecializationsController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('specialization_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.specializations.create');
     }
@@ -71,7 +71,7 @@ class SpecializationsController extends Controller
 
     public function edit(Specialization $specialization)
     {
-        abort_if(Gate::denies('specialization_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.specializations.edit', compact('specialization'));
     }
@@ -85,7 +85,7 @@ class SpecializationsController extends Controller
 
     public function show(Specialization $specialization)
     {
-        abort_if(Gate::denies('specialization_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $specialization->load('specializationJobs', 'specializationJobOffers');
 
@@ -94,7 +94,7 @@ class SpecializationsController extends Controller
 
     public function destroy(Specialization $specialization)
     {
-        abort_if(Gate::denies('specialization_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $specialization->delete();
 

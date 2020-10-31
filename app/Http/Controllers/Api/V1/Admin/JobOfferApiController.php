@@ -18,7 +18,7 @@ class JobOfferApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('job_offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new JobOfferResource(JobOffer::with(['specialization', 'city'])->get());
     }
@@ -42,7 +42,7 @@ class JobOfferApiController extends Controller
 
     public function show(JobOffer $jobOffer)
     {
-        abort_if(Gate::denies('job_offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new JobOfferResource($jobOffer->load(['specialization', 'city']));
     }
@@ -82,7 +82,7 @@ class JobOfferApiController extends Controller
 
     public function destroy(JobOffer $jobOffer)
     {
-        abort_if(Gate::denies('job_offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $jobOffer->delete();
 

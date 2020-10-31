@@ -16,7 +16,7 @@ class CitiesController extends Controller
 {
     public function index(Request $request)
     {
-        abort_if(Gate::denies('city_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = City::query()->select(sprintf('%s.*', (new City)->table));
@@ -57,7 +57,7 @@ class CitiesController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('city_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.cities.create');
     }
@@ -71,7 +71,7 @@ class CitiesController extends Controller
 
     public function edit(City $city)
     {
-        abort_if(Gate::denies('city_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.cities.edit', compact('city'));
     }
@@ -85,7 +85,7 @@ class CitiesController extends Controller
 
     public function show(City $city)
     {
-        abort_if(Gate::denies('city_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $city->load('cityDepartments', 'cityNews', 'cityJobOffers');
 
@@ -94,7 +94,7 @@ class CitiesController extends Controller
 
     public function destroy(City $city)
     {
-        abort_if(Gate::denies('city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $city->delete();
 

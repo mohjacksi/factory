@@ -15,7 +15,7 @@ class NotificationsApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('notification_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('notification_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new NotificationResource(Notification::all());
     }
@@ -31,7 +31,7 @@ class NotificationsApiController extends Controller
 
     public function show(Notification $notification)
     {
-        abort_if(Gate::denies('notification_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('notification_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new NotificationResource($notification);
     }
@@ -47,7 +47,7 @@ class NotificationsApiController extends Controller
 
     public function destroy(Notification $notification)
     {
-        abort_if(Gate::denies('notification_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('notification_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $notification->delete();
 

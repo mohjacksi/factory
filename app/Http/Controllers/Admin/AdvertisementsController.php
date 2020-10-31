@@ -20,7 +20,7 @@ class AdvertisementsController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('advertisement_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('advertisement_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Advertisement::query()->select(sprintf('%s.*', (new Advertisement)->table));
@@ -71,7 +71,7 @@ class AdvertisementsController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('advertisement_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('advertisement_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.advertisements.create');
     }
@@ -93,7 +93,7 @@ class AdvertisementsController extends Controller
 
     public function edit(Advertisement $advertisement)
     {
-        abort_if(Gate::denies('advertisement_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('advertisement_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.advertisements.edit', compact('advertisement'));
     }
@@ -123,14 +123,14 @@ class AdvertisementsController extends Controller
 
     public function show(Advertisement $advertisement)
     {
-        abort_if(Gate::denies('advertisement_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('advertisement_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.advertisements.show', compact('advertisement'));
     }
 
     public function destroy(Advertisement $advertisement)
     {
-        abort_if(Gate::denies('advertisement_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('advertisement_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $advertisement->delete();
 
@@ -146,7 +146,7 @@ class AdvertisementsController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('advertisement_create') && Gate::denies('advertisement_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('advertisement_create') && Gate::denies('advertisement_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new Advertisement();
         $model->id     = $request->input('crud_id', 0);

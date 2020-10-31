@@ -22,7 +22,7 @@ class JobOfferController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('job_offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = JobOffer::with(['specialization', 'city'])->select(sprintf('%s.*', (new JobOffer)->table));
@@ -109,7 +109,7 @@ class JobOfferController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('job_offer_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $specializations = Specialization::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -139,7 +139,7 @@ class JobOfferController extends Controller
 
     public function edit(JobOffer $jobOffer)
     {
-        abort_if(Gate::denies('job_offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $specializations = Specialization::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -183,7 +183,7 @@ class JobOfferController extends Controller
 
     public function show(JobOffer $jobOffer)
     {
-        abort_if(Gate::denies('job_offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $jobOffer->load('specialization', 'city');
 
@@ -192,7 +192,7 @@ class JobOfferController extends Controller
 
     public function destroy(JobOffer $jobOffer)
     {
-        abort_if(Gate::denies('job_offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $jobOffer->delete();
 
@@ -208,7 +208,7 @@ class JobOfferController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('job_offer_create') && Gate::denies('job_offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('job_offer_create') && Gate::denies('job_offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new JobOffer();
         $model->id     = $request->input('crud_id', 0);

@@ -22,7 +22,7 @@ class DepartmentsController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Department::with(['city', 'category'])->select(sprintf('%s.*', (new Department)->table));
@@ -90,7 +90,7 @@ class DepartmentsController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('department_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -116,7 +116,7 @@ class DepartmentsController extends Controller
 
     public function edit(Department $department)
     {
-        abort_if(Gate::denies('department_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -148,7 +148,7 @@ class DepartmentsController extends Controller
 
     public function show(Department $department)
     {
-        abort_if(Gate::denies('department_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $department->load('city', 'category');
 
@@ -157,7 +157,7 @@ class DepartmentsController extends Controller
 
     public function destroy(Department $department)
     {
-        abort_if(Gate::denies('department_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $department->delete();
 
@@ -173,7 +173,7 @@ class DepartmentsController extends Controller
 
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('department_create') && Gate::denies('department_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_create') && Gate::denies('department_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $model         = new Department();
         $model->id     = $request->input('crud_id', 0);

@@ -16,7 +16,7 @@ class CategoriesController extends Controller
 {
     public function index(Request $request)
     {
-        abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Category::query()->select(sprintf('%s.*', (new Category)->table));
@@ -60,7 +60,7 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.categories.create');
     }
@@ -74,7 +74,7 @@ class CategoriesController extends Controller
 
     public function edit(Category $category)
     {
-        abort_if(Gate::denies('category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.categories.edit', compact('category'));
     }
@@ -88,7 +88,7 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
-        abort_if(Gate::denies('category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $category->load('categoryDepartments', 'categoryOffers', 'categoryNews');
 
@@ -97,7 +97,7 @@ class CategoriesController extends Controller
 
     public function destroy(Category $category)
     {
-        abort_if(Gate::denies('category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $category->delete();
 

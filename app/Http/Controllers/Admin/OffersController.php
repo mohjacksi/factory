@@ -17,7 +17,7 @@ class OffersController extends Controller
 {
     public function index(Request $request)
     {
-        abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Offer::with(['category'])->select(sprintf('%s.*', (new Offer)->table));
@@ -73,7 +73,7 @@ class OffersController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('offer_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('offer_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -89,7 +89,7 @@ class OffersController extends Controller
 
     public function edit(Offer $offer)
     {
-        abort_if(Gate::denies('offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -107,7 +107,7 @@ class OffersController extends Controller
 
     public function show(Offer $offer)
     {
-        abort_if(Gate::denies('offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $offer->load('category');
 
@@ -116,7 +116,7 @@ class OffersController extends Controller
 
     public function destroy(Offer $offer)
     {
-        abort_if(Gate::denies('offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $offer->delete();
 

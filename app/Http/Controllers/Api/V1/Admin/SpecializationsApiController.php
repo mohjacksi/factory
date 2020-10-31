@@ -15,7 +15,7 @@ class SpecializationsApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('specialization_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new SpecializationResource(Specialization::all());
     }
@@ -31,7 +31,7 @@ class SpecializationsApiController extends Controller
 
     public function show(Specialization $specialization)
     {
-        abort_if(Gate::denies('specialization_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new SpecializationResource($specialization);
     }
@@ -47,7 +47,7 @@ class SpecializationsApiController extends Controller
 
     public function destroy(Specialization $specialization)
     {
-        abort_if(Gate::denies('specialization_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('specialization_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $specialization->delete();
 

@@ -15,7 +15,7 @@ class CitiesApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('city_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CityResource(City::all());
     }
@@ -31,7 +31,7 @@ class CitiesApiController extends Controller
 
     public function show(City $city)
     {
-        abort_if(Gate::denies('city_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new CityResource($city);
     }
@@ -47,7 +47,7 @@ class CitiesApiController extends Controller
 
     public function destroy(City $city)
     {
-        abort_if(Gate::denies('city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $city->delete();
 

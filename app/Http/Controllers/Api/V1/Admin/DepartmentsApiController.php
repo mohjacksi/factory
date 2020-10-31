@@ -18,7 +18,7 @@ class DepartmentsApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new DepartmentResource(Department::with(['city', 'category'])->get());
     }
@@ -38,7 +38,7 @@ class DepartmentsApiController extends Controller
 
     public function show(Department $department)
     {
-        abort_if(Gate::denies('department_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new DepartmentResource($department->load(['city', 'category']));
     }
@@ -66,7 +66,7 @@ class DepartmentsApiController extends Controller
 
     public function destroy(Department $department)
     {
-        abort_if(Gate::denies('department_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('department_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $department->delete();
 
