@@ -20,18 +20,17 @@ class DepartmentsApiController extends Controller
     {
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $city = $request['city'];
-        $type = $request['type'];
-
+        $type = $request['category'];
 
         if(isset($city) && isset($type)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['city_id'=>$city,'type_id'=>$type])->get());
+            ->where(['city_id'=>$city,'category_id'=>$type])->get());
         }else if(isset($city)){
             return new DepartmentResource(Department::with(['city', 'category'])
             ->where(['city_id'=>$city])->get());
         }else if(isset($type)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['type_id'=>$type])->get());
+            ->where(['category_id'=>$type])->get());
         }else{
             return new DepartmentResource(Department::with(['city', 'category'])->get());
         }
