@@ -1,52 +1,49 @@
 @extends('layouts.admin')
 @section('content')
-@can('offer_create')
+@can('trader_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.offers.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.offer.title_singular') }}
+            <a class="btn btn-success" href="{{ route('admin.traders.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.trader.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.offer.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.trader.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Offer">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Trader">
             <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.id') }}
+                        {{ trans('cruds.trader.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.name') }}
+                        {{ trans('cruds.trader.fields.images') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.category') }}
+                        {{ trans('cruds.trader.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.add_date') }}
+                        {{ trans('cruds.trader.fields.address') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.date_end') }}
+                        {{ trans('cruds.trader.fields.phone_number') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.phone_number') }}
+                        {{ trans('cruds.trader.fields.details') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.location') }}
+                        {{ trans('cruds.trader.fields.facebook_url') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.price') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.trader') }}
+                        {{ trans('cruds.trader.fields.whatsapp') }}
                     </th>
                     <th>
                         &nbsp;
@@ -59,19 +56,6 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($categories as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -83,12 +67,13 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($traders as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                     </td>
@@ -106,11 +91,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('offer_delete')
+@can('trader_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.offers.massDestroy') }}",
+    url: "{{ route('admin.traders.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
@@ -142,25 +127,24 @@
     serverSide: true,
     retrieve: true,
     aaSorting: [],
-    ajax: "{{ route('admin.offers.index') }}",
+    ajax: "{{ route('admin.traders.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'images', name: 'images', sortable: false, searchable: false },
 { data: 'name', name: 'name' },
-{ data: 'category_name', name: 'category.name' },
-{ data: 'add_date', name: 'add_date' },
-{ data: 'date_end', name: 'date_end' },
+{ data: 'address', name: 'address' },
 { data: 'phone_number', name: 'phone_number' },
-{ data: 'location', name: 'location' },
-{ data: 'price', name: 'price' },
-{ data: 'trader_name', name: 'trader.name' },
+{ data: 'details', name: 'details' },
+{ data: 'facebook_url', name: 'facebook_url' },
+{ data: 'whatsapp', name: 'whatsapp' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 50,
+    pageLength: 25,
   };
-  let table = $('.datatable-Offer').DataTable(dtOverrideGlobals);
+  let table = $('.datatable-Trader').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

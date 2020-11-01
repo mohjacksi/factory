@@ -13,9 +13,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin',
     // Users
     Route::apiResource('users', 'UsersApiController');
 
-    // Advertisements
-    Route::post('advertisements/media', 'AdvertisementsApiController@storeMedia')->name('advertisements.storeMedia');
-    Route::apiResource('advertisements', 'AdvertisementsApiController');
+    // MainPageImages
+    Route::post('mainpageimages/media', 'MainPageImagesApiController@storeMedia')->name('mainpageimages.storeMedia');
+    Route::apiResource('mainpageimages', 'MainPageImagesApiController');
 
     // Cities
     Route::apiResource('cities', 'CitiesApiController');
@@ -47,4 +47,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin',
     // Job Offers
     Route::post('job-offers/media', 'JobOfferApiController@storeMedia')->name('job-offers.storeMedia');
     Route::apiResource('job-offers', 'JobOfferApiController');
+
+    // Traders
+    Route::post('traders/media', 'TraderApiController@storeMedia')->name('traders.storeMedia');
+    Route::apiResource('traders', 'TraderApiController');
+
+    // Products
+    Route::post('products/media', 'ProductsApiController@storeMedia')->name('products.storeMedia');
+    Route::apiResource('products', 'ProductsApiController');
 });

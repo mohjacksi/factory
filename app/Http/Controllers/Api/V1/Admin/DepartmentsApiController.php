@@ -16,11 +16,25 @@ class DepartmentsApiController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index(Request $request)
     {
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $city = $request['city'];
+        $type = $request['type'];
 
-        return new DepartmentResource(Department::with(['city', 'category'])->get());
+
+        if(isset($city) && isset($type)){
+            return new DepartmentResource(Department::with(['city', 'category'])
+            ->where(['city_id'=>$city,'type_id'=>$type])->get());
+        }else if(isset($city)){
+            return new DepartmentResource(Department::with(['city', 'category'])
+            ->where(['type_id'=>$type])->get());
+        }else if(isset($type)){
+            return new DepartmentResource(Department::with(['city', 'category'])
+            ->where(['city_id'=>$city])->get());
+        }else{
+            return new DepartmentResource(Department::with(['city', 'category'])->get());
+        }
     }
 
     public function store(StoreDepartmentRequest $request)

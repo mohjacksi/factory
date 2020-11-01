@@ -13,10 +13,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CategoriesApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $type = $request['type'];
 
+        //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        if(isset($type)){
+        return new CategoryResource(Category::where('type',$type)->get());
+
+        }
         return new CategoryResource(Category::all());
     }
 

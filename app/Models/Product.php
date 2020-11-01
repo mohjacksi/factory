@@ -9,14 +9,14 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 use \DateTimeInterface;
 
-class Advertisement extends Model implements HasMedia
+class Product extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    public $table = 'mainpageimages';
+    public $table = 'products';
 
     protected $appends = [
-        'images',
+        'image',
     ];
 
     protected $dates = [
@@ -26,6 +26,9 @@ class Advertisement extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'name',
+        'price',
+        'trader_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -42,15 +45,21 @@ class Advertisement extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function getImagesAttribute()
+    public function getImageAttribute()
     {
-        $files = $this->getMedia('images');
-        $files->each(function ($item) {
-            $item->url       = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
-        });
+        $file = $this->getMedia('image')->last();
 
-        return $files;
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+    public function trader()
+    {
+        return $this->belongsTo(Trader::class, 'trader_id');
     }
 }

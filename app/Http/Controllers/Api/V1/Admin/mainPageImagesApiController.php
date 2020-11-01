@@ -12,7 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdvertisementsApiController extends Controller
+class MainPageImagesApiController extends Controller
 {
     use MediaUploadingTrait;
 

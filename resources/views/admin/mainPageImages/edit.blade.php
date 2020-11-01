@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.advertisements.update", [$advertisement->id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.mainpageimages.update", [$advertisement->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="form-group">
@@ -38,7 +38,7 @@
 <script>
     var uploadedImagesMap = {}
 Dropzone.options.imagesDropzone = {
-    url: '{{ route('admin.advertisements.storeMedia') }}',
+    url: '{{ route('admin.mainpageimages.storeMedia') }}',
     maxFilesize: 5, // MB
     acceptedFiles: '.jpeg,.jpg,.png,.gif',
     addRemoveLinks: true,

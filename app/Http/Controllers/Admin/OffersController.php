@@ -8,6 +8,7 @@ use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
 use App\Models\Category;
 use App\Models\Offer;
+use App\Models\Trader;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ class OffersController extends Controller
         //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Offer::with(['category'])->select(sprintf('%s.*', (new Offer)->table));
+            $query = Offer::with(['category', 'trader'])->select(sprintf('%s.*', (new Offer)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -60,15 +61,19 @@ class OffersController extends Controller
             $table->editColumn('price', function ($row) {
                 return $row->price ? $row->price : "";
             });
+            $table->addColumn('trader_name', function ($row) {
+                return $row->trader ? $row->trader->name : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'category']);
+            $table->rawColumns(['actions', 'placeholder', 'category', 'trader']);
 
             return $table->make(true);
         }
 
         $categories = Category::get();
+        $traders    = Trader::get();
 
-        return view('admin.offers.index', compact('categories'));
+        return view('admin.offers.index', compact('categories', 'traders'));
     }
 
     public function create()
@@ -77,7 +82,9 @@ class OffersController extends Controller
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.offers.create', compact('categories'));
+        $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.offers.create', compact('categories', 'traders'));
     }
 
     public function store(StoreOfferRequest $request)
@@ -93,9 +100,11 @@ class OffersController extends Controller
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $offer->load('category');
+        $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.offers.edit', compact('categories', 'offer'));
+        $offer->load('category', 'trader');
+
+        return view('admin.offers.edit', compact('categories', 'traders', 'offer'));
     }
 
     public function update(UpdateOfferRequest $request, Offer $offer)
@@ -109,7 +118,7 @@ class OffersController extends Controller
     {
         //abort_if(Gate::denies('offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $offer->load('category');
+        $offer->load('category', 'trader');
 
         return view('admin.offers.show', compact('offer'));
     }

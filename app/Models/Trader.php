@@ -9,11 +9,11 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 use \DateTimeInterface;
 
-class Advertisement extends Model implements HasMedia
+class Trader extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    public $table = 'mainpageimages';
+    public $table = 'traders';
 
     protected $appends = [
         'images',
@@ -26,6 +26,12 @@ class Advertisement extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'name',
+        'address',
+        'phone_number',
+        'details',
+        'facebook_url',
+        'whatsapp',
         'created_at',
         'updated_at',
         'deleted_at',

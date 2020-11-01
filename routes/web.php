@@ -25,11 +25,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
-    // Advertisements
-    Route::delete('advertisements/destroy', 'AdvertisementsController@massDestroy')->name('advertisements.massDestroy');
-    Route::post('advertisements/media', 'AdvertisementsController@storeMedia')->name('advertisements.storeMedia');
-    Route::post('advertisements/ckmedia', 'AdvertisementsController@storeCKEditorImages')->name('advertisements.storeCKEditorImages');
-    Route::resource('advertisements', 'AdvertisementsController');
+    // MainPageImages
+    Route::delete('mainpageimages/destroy', 'MainPageImagesController@massDestroy')->name('mainpageimages.massDestroy');
+    Route::post('mainpageimages/media', 'MainPageImagesController@storeMedia')->name('mainpageimages.storeMedia');
+    Route::post('mainpageimages/ckmedia', 'MainPageImagesController@storeCKEditorImages')->name('mainpageimages.storeCKEditorImages');
+    Route::resource('mainpageimages', 'MainPageImagesController');
 
     // Cities
     Route::delete('cities/destroy', 'CitiesController@massDestroy')->name('cities.massDestroy');
@@ -74,6 +74,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('job-offers/media', 'JobOfferController@storeMedia')->name('job-offers.storeMedia');
     Route::post('job-offers/ckmedia', 'JobOfferController@storeCKEditorImages')->name('job-offers.storeCKEditorImages');
     Route::resource('job-offers', 'JobOfferController');
+
+    // Traders
+    Route::delete('traders/destroy', 'TraderController@massDestroy')->name('traders.massDestroy');
+    Route::post('traders/media', 'TraderController@storeMedia')->name('traders.storeMedia');
+    Route::post('traders/ckmedia', 'TraderController@storeCKEditorImages')->name('traders.storeCKEditorImages');
+    Route::resource('traders', 'TraderController');
+
+    // Products
+    Route::delete('products/destroy', 'ProductsController@massDestroy')->name('products.massDestroy');
+    Route::post('products/media', 'ProductsController@storeMedia')->name('products.storeMedia');
+    Route::post('products/ckmedia', 'ProductsController@storeCKEditorImages')->name('products.storeCKEditorImages');
+    Route::resource('products', 'ProductsController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password

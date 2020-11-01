@@ -278,7 +278,7 @@ return [
     'title'                                => 'العنوان',
     'transaction_date'                     => 'تاريخ الحوالة',
     'trash'                                => 'المحذوفات',
-    'update'                               => 'تحيث',
+    'update'                               => 'تحديث',
     'updated_at'                           => 'تعدل في',
     'upgrade_to_premium'                   => 'الترقية إلى بريميوم',
     'user_actions'                         => 'أحداث المستخدم',

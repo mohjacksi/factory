@@ -26,7 +26,7 @@
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('advertisement_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.advertisements.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/advertisements") || request()->is("admin/advertisements/*") ? "active" : "" }}">
+                            <a href="{{ route("admin.mainpageimages.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/mainpageimages") || request()->is("admin/mainpageimages/*") ? "active" : "" }}">
                                 <i class="fa-fw far fa-font-awesome-logo-full c-sidebar-nav-icon">
 
                                 </i>
@@ -91,6 +91,26 @@
 
                                 </i>
                                 {{ trans('cruds.jobOffer.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('trader_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.traders.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/traders") || request()->is("admin/traders/*") ? "active" : "" }}">
+                                <i class="fa-fw fas fa-dollar-sign c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.trader.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('product_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.products.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/products") || request()->is("admin/products/*") ? "active" : "" }}">
+                                <i class="fa-fw fab fa-product-hunt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.product.title') }}
                             </a>
                         </li>
                     @endcan

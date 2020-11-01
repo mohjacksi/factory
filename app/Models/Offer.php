@@ -29,6 +29,7 @@ class Offer extends Model
         'phone_number',
         'location',
         'price',
+        'trader_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -62,5 +63,10 @@ class Offer extends Model
     public function setDateEndAttribute($value)
     {
         $this->attributes['date_end'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+
+    public function trader()
+    {
+        return $this->belongsTo(Trader::class, 'trader_id');
     }
 }

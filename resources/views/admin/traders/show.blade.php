@@ -3,13 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.offer.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.trader.title') }}
     </div>
 
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.offers.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.traders.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,80 +17,76 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.id') }}
+                            {{ trans('cruds.trader.fields.id') }}
                         </th>
                         <td>
-                            {{ $offer->id }}
+                            {{ $trader->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.name') }}
+                            {{ trans('cruds.trader.fields.images') }}
                         </th>
                         <td>
-                            {{ $offer->name }}
+                            @foreach($trader->images as $key => $media)
+                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $media->getUrl('thumb') }}">
+                                </a>
+                            @endforeach
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.category') }}
+                            {{ trans('cruds.trader.fields.name') }}
                         </th>
                         <td>
-                            {{ $offer->category->name ?? '' }}
+                            {{ $trader->name }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.add_date') }}
+                            {{ trans('cruds.trader.fields.address') }}
                         </th>
                         <td>
-                            {{ $offer->add_date }}
+                            {{ $trader->address }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.date_end') }}
+                            {{ trans('cruds.trader.fields.phone_number') }}
                         </th>
                         <td>
-                            {{ $offer->date_end }}
+                            {{ $trader->phone_number }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.phone_number') }}
+                            {{ trans('cruds.trader.fields.details') }}
                         </th>
                         <td>
-                            {{ $offer->phone_number }}
+                            {{ $trader->details }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.location') }}
+                            {{ trans('cruds.trader.fields.facebook_url') }}
                         </th>
                         <td>
-                            {{ $offer->location }}
+                            {{ $trader->facebook_url }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.offer.fields.price') }}
+                            {{ trans('cruds.trader.fields.whatsapp') }}
                         </th>
                         <td>
-                            {{ $offer->price }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.offer.fields.trader') }}
-                        </th>
-                        <td>
-                            {{ $offer->trader->name ?? '' }}
+                            {{ $trader->whatsapp }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.offers.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.traders.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

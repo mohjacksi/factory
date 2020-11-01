@@ -1,52 +1,40 @@
 @extends('layouts.admin')
 @section('content')
-@can('offer_create')
+@can('product_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.offers.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.offer.title_singular') }}
+            <a class="btn btn-success" href="{{ route('admin.products.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.product.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.offer.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.product.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Offer">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Product">
             <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.id') }}
+                        {{ trans('cruds.product.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.name') }}
+                        {{ trans('cruds.product.fields.image') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.category') }}
+                        {{ trans('cruds.product.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.add_date') }}
+                        {{ trans('cruds.product.fields.price') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.date_end') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.phone_number') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.location') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.price') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.trader') }}
+                        {{ trans('cruds.product.fields.trader') }}
                     </th>
                     <th>
                         &nbsp;
@@ -59,22 +47,6 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($categories as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -106,11 +78,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('offer_delete')
+@can('product_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.offers.massDestroy') }}",
+    url: "{{ route('admin.products.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
@@ -142,16 +114,12 @@
     serverSide: true,
     retrieve: true,
     aaSorting: [],
-    ajax: "{{ route('admin.offers.index') }}",
+    ajax: "{{ route('admin.products.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'image', name: 'image', sortable: false, searchable: false },
 { data: 'name', name: 'name' },
-{ data: 'category_name', name: 'category.name' },
-{ data: 'add_date', name: 'add_date' },
-{ data: 'date_end', name: 'date_end' },
-{ data: 'phone_number', name: 'phone_number' },
-{ data: 'location', name: 'location' },
 { data: 'price', name: 'price' },
 { data: 'trader_name', name: 'trader.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
@@ -160,7 +128,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 50,
   };
-  let table = $('.datatable-Offer').DataTable(dtOverrideGlobals);
+  let table = $('.datatable-Product').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

@@ -46,6 +46,9 @@
                             {{ trans('cruds.offer.fields.price') }}
                         </th>
                         <th>
+                            {{ trans('cruds.offer.fields.trader') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -79,6 +82,9 @@
                             </td>
                             <td>
                                 {{ $offer->price ?? '' }}
+                            </td>
+                            <td>
+                                {{ $offer->trader->name ?? '' }}
                             </td>
                             <td>
                                 @can('offer_show')

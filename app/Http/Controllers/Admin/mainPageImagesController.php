@@ -14,7 +14,7 @@ use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
-class AdvertisementsController extends Controller
+class MainPageImagesController extends Controller
 {
     use MediaUploadingTrait;
 
@@ -33,7 +33,7 @@ class AdvertisementsController extends Controller
                 $viewGate      = 'advertisement_show';
                 $editGate      = 'advertisement_edit';
                 $deleteGate    = 'advertisement_delete';
-                $crudRoutePart = 'advertisements';
+                $crudRoutePart = 'mainpageimages';
 
                 return view('partials.datatablesActions', compact(
                     'viewGate',
@@ -66,14 +66,14 @@ class AdvertisementsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.advertisements.index');
+        return view('admin.mainpageimages.index');
     }
 
     public function create()
     {
         //abort_if(Gate::denies('advertisement_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.advertisements.create');
+        return view('admin.mainpageimages.create');
     }
 
     public function store(StoreAdvertisementRequest $request)
@@ -88,14 +88,14 @@ class AdvertisementsController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $advertisement->id]);
         }
 
-        return redirect()->route('admin.advertisements.index');
+        return redirect()->route('admin.mainpageimages.index');
     }
 
     public function edit(Advertisement $advertisement)
     {
         //abort_if(Gate::denies('advertisement_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.advertisements.edit', compact('advertisement'));
+        return view('admin.mainpageimages.edit', compact('advertisement'));
     }
 
     public function update(UpdateAdvertisementRequest $request, Advertisement $advertisement)
@@ -118,14 +118,14 @@ class AdvertisementsController extends Controller
             }
         }
 
-        return redirect()->route('admin.advertisements.index');
+        return redirect()->route('admin.mainpageimages.index');
     }
 
     public function show(Advertisement $advertisement)
     {
         //abort_if(Gate::denies('advertisement_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.advertisements.show', compact('advertisement'));
+        return view('admin.mainpageimages.show', compact('advertisement'));
     }
 
     public function destroy(Advertisement $advertisement)
