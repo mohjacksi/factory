@@ -24,15 +24,15 @@ class DepartmentsApiController extends Controller
 
         if(isset($city) && isset($type)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['city_id'=>$city,'category_id'=>$type])->get());
+            ->where(['city_id'=>$city,'category_id'=>$type])->orderBy('created_at', 'desc')->get());
         }else if(isset($city)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['city_id'=>$city])->get());
+            ->where(['city_id'=>$city])->orderBy('created_at', 'desc')->get());
         }else if(isset($type)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['category_id'=>$type])->get());
+            ->where(['category_id'=>$type])->orderBy('created_at', 'desc')->get());
         }else{
-            return new DepartmentResource(Department::with(['city', 'category'])->get());
+            return new DepartmentResource(Department::with(['city', 'category'])->orderBy('created_at', 'desc')->get());
         }
     }
 

@@ -17,7 +17,7 @@ class OffersApiController extends Controller
     {
         //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new OfferResource(Offer::with(['category', 'trader'])->get());
+        return new OfferResource(Offer::with(['category', 'trader'])->orderBy('created_at', 'desc')->get());
     }
 
     public function store(StoreOfferRequest $request)
