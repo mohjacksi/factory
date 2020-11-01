@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Trader;
 
 class DepartmentsController extends Controller
 {
@@ -25,6 +26,7 @@ class DepartmentsController extends Controller
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
+
             $query = Department::with(['city', 'category'])->select(sprintf('%s.*', (new Department)->table));
             $table = Datatables::of($query);
 
@@ -84,6 +86,7 @@ class DepartmentsController extends Controller
 
         $cities     = City::get();
         $categories = Category::get();
+        $traders    = Trader::get();
 
         return view('admin.departments.index', compact('cities', 'categories'));
     }
@@ -95,6 +98,8 @@ class DepartmentsController extends Controller
         $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.departments.create', compact('cities', 'categories'));
     }
@@ -123,6 +128,8 @@ class DepartmentsController extends Controller
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $department->load('city', 'category');
+
+        $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.departments.edit', compact('cities', 'categories', 'department'));
     }
