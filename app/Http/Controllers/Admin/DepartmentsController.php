@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Trader;
 
+
 class DepartmentsController extends Controller
 {
     use MediaUploadingTrait;

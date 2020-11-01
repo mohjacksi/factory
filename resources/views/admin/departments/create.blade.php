@@ -78,6 +78,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.department.fields.category_helper') }}</span>
             </div>
+            
             <div class="form-group">
                 <label for="trader_id">{{ trans('cruds.offer.fields.trader') }}</label>
                 <select class="form-control select2 {{ $errors->has('trader') ? 'is-invalid' : '' }}" name="trader_id" id="trader_id">
