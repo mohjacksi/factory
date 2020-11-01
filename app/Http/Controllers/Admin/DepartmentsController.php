@@ -79,7 +79,9 @@ class DepartmentsController extends Controller
             $table->addColumn('category_name', function ($row) {
                 return $row->category ? $row->category->name : '';
             });
-
+            $table->addColumn('trader_name', function ($row) {
+                return $row->trader ? $row->trader->name : '';
+            });
             $table->rawColumns(['actions', 'placeholder', 'logo', 'city', 'category']);
 
             return $table->make(true);
