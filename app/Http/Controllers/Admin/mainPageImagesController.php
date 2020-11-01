@@ -14,6 +14,7 @@ use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
+
 class MainPageImagesController extends Controller
 {
     use MediaUploadingTrait;
