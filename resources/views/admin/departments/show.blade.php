@@ -75,6 +75,14 @@
                             {{ $department->category->name ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.offer.fields.trader') }}
+                        </th>
+                        <td>
+                            {{ $offer->trader->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
