@@ -88,7 +88,7 @@ class DepartmentsController extends Controller
         $categories = Category::get();
         $traders    = Trader::get();
 
-        return view('admin.departments.index', compact('cities', 'categories'));
+        return view('admin.departments.index', compact('cities', 'categories','traders'));
     }
 
     public function create()
@@ -101,7 +101,7 @@ class DepartmentsController extends Controller
 
         $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.departments.create', compact('cities', 'categories'));
+        return view('admin.departments.create', compact('cities', 'categories','traders'));
     }
 
     public function store(StoreDepartmentRequest $request)
@@ -131,7 +131,7 @@ class DepartmentsController extends Controller
 
         $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.departments.edit', compact('cities', 'categories', 'department'));
+        return view('admin.departments.edit', compact('cities', 'categories', 'department','traders'));
     }
 
     public function update(UpdateDepartmentRequest $request, Department $department)
