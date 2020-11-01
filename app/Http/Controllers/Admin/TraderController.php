@@ -139,10 +139,10 @@ class TraderController extends Controller
         return redirect()->route('admin.traders.index');
     }
 
-    public function show(Trader $trader)
+    public function show(int $id)
     {
         //abort_if(Gate::denies('trader_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $trader = Trader::where('id',$id)->with(['products'])->get();
         return view('admin.traders.show', compact('trader'));
     }
 

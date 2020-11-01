@@ -59,4 +59,9 @@ class Trader extends Model implements HasMedia
 
         return $files;
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'trader_id', 'id');
+    }
 }
