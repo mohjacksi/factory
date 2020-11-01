@@ -28,10 +28,10 @@ class DepartmentsApiController extends Controller
             ->where(['city_id'=>$city,'type_id'=>$type])->get());
         }else if(isset($city)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['type_id'=>$type])->get());
+            ->where(['city_id'=>$city])->get());
         }else if(isset($type)){
             return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['city_id'=>$city])->get());
+            ->where(['type_id'=>$type])->get());
         }else{
             return new DepartmentResource(Department::with(['city', 'category'])->get());
         }
