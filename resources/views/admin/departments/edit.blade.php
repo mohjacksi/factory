@@ -80,6 +80,20 @@
                 <span class="help-block">{{ trans('cruds.department.fields.category_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="trader_id">{{ trans('cruds.offer.fields.trader') }}</label>
+                <select class="form-control select2 {{ $errors->has('trader') ? 'is-invalid' : '' }}" name="trader_id" id="trader_id">
+                    @foreach($traders as $id => $trader)
+                        <option value="{{ $id }}" {{ (old('trader_id') ? old('trader_id') : $offer->trader->id ?? '') == $id ? 'selected' : '' }}>{{ $trader }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('trader'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('trader') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.offer.fields.trader_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
