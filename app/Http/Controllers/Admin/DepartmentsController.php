@@ -28,7 +28,7 @@ class DepartmentsController extends Controller
 
         if ($request->ajax()) {
 
-            $query = Department::with(['city', 'category'])->select(sprintf('%s.*', (new Department)->table));
+            $query = Department::with(['city', 'category','trader'])->select(sprintf('%s.*', (new Department)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
