@@ -31,6 +31,7 @@ class Department extends Model implements HasMedia
         'city_id',
         'phone_number',
         'category_id',
+        'trader_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -68,5 +69,9 @@ class Department extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function trader()
+    {
+        return $this->belongsTo(Trader::class, 'trader_id');
     }
 }
