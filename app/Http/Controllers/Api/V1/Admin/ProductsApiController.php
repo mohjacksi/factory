@@ -16,11 +16,13 @@ class ProductsApiController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index(Request $request)
     {
         //abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ProductResource(Product::with(['trader'])->get());
+        $trader_id = $request['trader_id'];
+
+        return new ProductResource(Product::where('trader_id',$trader_id)->with(['trader'])->get());
     }
 
     public function store(StoreProductRequest $request)

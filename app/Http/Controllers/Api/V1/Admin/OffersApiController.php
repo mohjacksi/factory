@@ -13,11 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OffersApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return new OfferResource(Offer::with(['category', 'trader'])->orderBy('created_at', 'desc')->get());
+        $trader_id = $request['trader_id'];
+        return new OfferResource(Offer::where('trader_id',$trader_id)->with(['category', 'trader'])->orderBy('created_at', 'desc')->get());
     }
 
     public function store(StoreOfferRequest $request)
