@@ -49,9 +49,6 @@
                             {{ trans('cruds.offer.fields.trader') }}
                         </th>
                         <th>
-                            {{ trans('cruds.offer.fields.images') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -88,13 +85,6 @@
                             </td>
                             <td>
                                 {{ $offer->trader->name ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($offer->images as $key => $media)
-                                    <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $media->getUrl('thumb') }}">
-                                    </a>
-                                @endforeach
                             </td>
                             <td>
                                 @can('offer_show')

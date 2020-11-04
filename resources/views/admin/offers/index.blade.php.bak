@@ -49,9 +49,6 @@
                         {{ trans('cruds.offer.fields.trader') }}
                     </th>
                     <th>
-                        {{ trans('cruds.offer.fields.images') }}
-                    </th>
-                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -92,8 +89,6 @@
                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
-                    </td>
-                    <td>
                     </td>
                     <td>
                     </td>
@@ -159,7 +154,6 @@
 { data: 'location', name: 'location' },
 { data: 'price', name: 'price' },
 { data: 'trader_name', name: 'trader.name' },
-{ data: 'images', name: 'images', sortable: false, searchable: false },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

@@ -21,8 +21,9 @@ class ProductsApiController extends Controller
         //abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $trader_id = $request['trader_id'];
-
-        return new ProductResource(Product::where('trader_id',$trader_id)->with(['trader'])->get());
+        if(isset($trader_id))
+            return new ProductResource(Product::where('trader_id',$trader_id)->with(['trader'])->get());
+        return new ProductResource(Product::with(['trader'])->get());
     }
 
     public function store(StoreProductRequest $request)

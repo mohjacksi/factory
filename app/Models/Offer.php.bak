@@ -5,20 +5,13 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
 use \DateTimeInterface;
 
-class Offer extends Model implements HasMedia
+class Offer extends Model
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes;
 
     public $table = 'offers';
-
-    protected $appends = [
-        'images',
-    ];
 
     protected $dates = [
         'add_date',
@@ -45,12 +38,6 @@ class Offer extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
-
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
     public function category()
@@ -81,17 +68,5 @@ class Offer extends Model implements HasMedia
     public function trader()
     {
         return $this->belongsTo(Trader::class, 'trader_id');
-    }
-
-    public function getImagesAttribute()
-    {
-        $files = $this->getMedia('images');
-        $files->each(function ($item) {
-            $item->url       = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
-        });
-
-        return $files;
     }
 }
