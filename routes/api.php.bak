@@ -28,7 +28,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin',
     Route::apiResource('categories', 'CategoriesApiController');
 
     // Offers
-    Route::post('offers/media', 'OffersApiController@storeMedia')->name('offers.storeMedia');
     Route::apiResource('offers', 'OffersApiController');
 
     // Specializations

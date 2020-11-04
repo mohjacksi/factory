@@ -47,8 +47,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Offers
     Route::delete('offers/destroy', 'OffersController@massDestroy')->name('offers.massDestroy');
-    Route::post('offers/media', 'OffersController@storeMedia')->name('offers.storeMedia');
-    Route::post('offers/ckmedia', 'OffersController@storeCKEditorImages')->name('offers.storeCKEditorImages');
     Route::resource('offers', 'OffersController');
 
     // Specializations
