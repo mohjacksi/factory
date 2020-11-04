@@ -16,7 +16,7 @@ class OffersApiController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index($request)
     {
         //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $trader_id = $request['trader_id'];
