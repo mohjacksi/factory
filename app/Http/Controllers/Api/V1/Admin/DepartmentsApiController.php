@@ -19,11 +19,11 @@ class DepartmentsApiController extends Controller
     public function index(Request $request)
     {
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $departmentQueryBuilder = Department::with(['city_id', 'category']);
+        $departmentQueryBuilder = Department::with(['city', 'category']);
 
         $city_id = $request['city_id'];
         $category_id = $request['category_id'];
-        
+
         if(isset($city_id))
             $departmentQueryBuilder = $departmentQueryBuilder->where(['city_id'=>$city_id]);
         if(isset($category_id))
