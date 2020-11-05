@@ -18,11 +18,19 @@ class OffersApiController extends Controller
 
     public function index(Request $request)
     {
+        $offerQueryBuilder = Offer::with(['category', 'trader']);
         //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $category_id = $request['category_id'];
         $trader_id = $request['trader_id'];
+
+
         if(isset($trader_id))
-            return new OfferResource(Offer::where('trader_id',$trader_id)->with(['category', 'trader'])->orderBy('created_at', 'desc')->get());
-        return new OfferResource(Offer::with(['category', 'trader'])->orderBy('created_at', 'desc')->get());
+            $offerQueryBuilder = $offerQueryBuilder->where('trader_id',$trader_id);
+        if(isset($category_id))
+            $offerQueryBuilder = $offerQueryBuilder->where('category_id',$category_id);
+
+
+        return new OfferResource($offerQueryBuilder->orderBy('created_at', 'desc')->get());
     }
 
     public function store(StoreOfferRequest $request)

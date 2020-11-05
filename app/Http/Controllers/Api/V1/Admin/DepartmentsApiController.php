@@ -19,21 +19,17 @@ class DepartmentsApiController extends Controller
     public function index(Request $request)
     {
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $city = $request['city'];
-        $type = $request['category'];
+        $departmentQueryBuilder = Department::with(['city_id', 'category']);
 
-        if(isset($city) && isset($type)){
-            return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['city_id'=>$city,'category_id'=>$type])->orderBy('created_at', 'desc')->get());
-        }else if(isset($city)){
-            return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['city_id'=>$city])->orderBy('created_at', 'desc')->get());
-        }else if(isset($type)){
-            return new DepartmentResource(Department::with(['city', 'category'])
-            ->where(['category_id'=>$type])->orderBy('created_at', 'desc')->get());
-        }else{
-            return new DepartmentResource(Department::with(['city', 'category'])->orderBy('created_at', 'desc')->get());
-        }
+        $city_id = $request['city_id'];
+        $category_id = $request['category_id'];
+        
+        if(isset($city_id))
+            $departmentQueryBuilder = $departmentQueryBuilder->where(['city_id'=>$city_id]);
+        if(isset($category_id))
+            $departmentQueryBuilder = $departmentQueryBuilder->where(['category_id'=>$category_id]);
+
+        return new DepartmentResource($departmentQueryBuilder->orderBy('created_at', 'desc')->get());
     }
 
     public function store(StoreDepartmentRequest $request)

@@ -16,11 +16,21 @@ class JobsApiController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index()
+    public function index(Request $request)
     {
         //abort_if(Gate::denies('job_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $jobQueryBuilder = Job::with(['city', 'specialization']);
 
-        return new JobResource(Job::with(['city', 'specialization'])->get());
+        $city_id = $request['city_id'];
+        $specialization_id = $request['specialization_id'];
+
+
+        if(isset($city_id))
+            $jobQueryBuilder = $jobQueryBuilder->where('city_id',$city_id);
+        if(isset($specialization_id))
+            $jobQueryBuilder = $jobQueryBuilder->where('specialization_id',$specialization_id);
+
+        return new JobResource($jobQueryBuilder->get());
     }
 
     public function store(StoreJobRequest $request)
