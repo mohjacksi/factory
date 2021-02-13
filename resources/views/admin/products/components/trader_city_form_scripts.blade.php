@@ -64,7 +64,7 @@
 
         function fullTable(hos) {
             var allData = "";
-            var old_id = {!! $component_id !!} ?? 0;
+            var old_id = '{!! $component_id !!}' ?? 0;
             var selected = 'selected';
             var notselected = '';
             allData += '<option selected value="">يرجى الإختيار</option> ';
