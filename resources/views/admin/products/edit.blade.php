@@ -395,7 +395,7 @@
     @include('admin.products.components.trader_city_form_scripts',
     [
         'token'=>$token,
-        'component_id'=>isset($product)?$product->trader_id:'0',
+        'component_id'=>isset($product)?$product->department_id:'0',
         'main_name_id'=>'#trader_id',
         'sub_name_id'=>'department_id',
         'api_url'=>'/public/api/v1/get_departments_of_trader/',

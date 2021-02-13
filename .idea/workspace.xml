@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add edit in trader city form scripts">
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/components/trader_city_form_scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/components/trader_city_form_scripts.blade.php" afterDir="false" />
+    <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add edit in trader city form scripts v2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +254,7 @@
       <workItem from="1613232656318" duration="1892000" />
       <workItem from="1613235904962" duration="385000" />
       <workItem from="1613236549527" duration="618000" />
-      <workItem from="1613238327576" duration="374000" />
+      <workItem from="1613238327576" duration="818000" />
     </task>
     <task id="LOCAL-00001" summary="add color in variants">
       <created>1611853889154</created>
@@ -353,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613238650019</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add edit in trader city form scripts v2">
+      <created>1613238714519</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613238714519</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,6 +394,7 @@
     <MESSAGE value="add prreview" />
     <MESSAGE value="add edit in news Controllers" />
     <MESSAGE value="add edit in trader city form scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="add edit in trader city form scripts" />
+    <MESSAGE value="add edit in trader city form scripts v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add edit in trader city form scripts v2" />
   </component>
 </project>
