@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add appends in variants">
       <change beforePath="$PROJECT_DIR$/resources/views/admin/variants/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/variants/show.blade.php" afterDir="false" />
 =======
@@ -24,6 +25,9 @@
 >>>>>>> 31664197083a46cd7f0bf38525867653c28bbb83
 =======
     <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add edit in news Controllers">
+=======
+    <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add edit in trader city form scripts">
+>>>>>>> 56d1744b94976928084b0ae7376e8ca951443008
       <change beforePath="$PROJECT_DIR$/resources/views/admin/products/components/trader_city_form_scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/components/trader_city_form_scripts.blade.php" afterDir="false" />
 >>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
     </list>
@@ -280,10 +284,14 @@
       <workItem from="1613235904962" duration="385000" />
       <workItem from="1613236549527" duration="618000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 31664197083a46cd7f0bf38525867653c28bbb83
 =======
       <workItem from="1613238327576" duration="305000" />
 >>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
+=======
+      <workItem from="1613238327576" duration="374000" />
+>>>>>>> 56d1744b94976928084b0ae7376e8ca951443008
     </task>
     <task id="LOCAL-00001" summary="add color in variants">
       <created>1611853889154</created>
@@ -383,8 +391,19 @@
       <option name="project" value="LOCAL" />
       <updated>1613238349368</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="14" />
 >>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
+=======
+    <task id="LOCAL-00014" summary="add edit in trader city form scripts">
+      <created>1613238650019</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1613238650019</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+>>>>>>> 56d1744b94976928084b0ae7376e8ca951443008
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +442,12 @@
 >>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
 =======
     <MESSAGE value="add edit in news Controllers" />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="add edit in news Controllers" />
 >>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
+=======
+    <MESSAGE value="add edit in trader city form scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add edit in trader city form scripts" />
+>>>>>>> 56d1744b94976928084b0ae7376e8ca951443008
   </component>
 </project>
