@@ -18,10 +18,10 @@ class CategoriesApiController extends Controller
         $type = $request['type'];
 
         //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        if(isset($type)){
-        return new CategoryResource(Category::where('type',$type)->get());
-
+        if (isset($type)) {
+            return new CategoryResource(Category::where('type', $type)->get());
         }
+
         return new CategoryResource(Category::all());
     }
 
@@ -34,11 +34,11 @@ class CategoriesApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Category $category)
+    public function show($category)
     {
         //abort_if(Gate::denies('category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CategoryResource($category);
+        return new CategoryResource(Category::findOrFail($category));
     }
 
     public function update(UpdateCategoryRequest $request, Category $category)

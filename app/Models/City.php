@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
 class City extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Filterable;
 
     public $table = 'cities';
 
@@ -43,5 +44,25 @@ class City extends Model
     public function cityJobOffers()
     {
         return $this->hasMany(JobOffer::class, 'city_id', 'id');
+    }
+
+    public function cityOffers()
+    {
+        return $this->hasMany(Offer::class, 'city_id', 'id');
+    }
+
+    public function cityProducts()
+    {
+        return $this->hasMany(Product::class, 'city_id', 'id');
+    }
+
+    public function cityNotifications()
+    {
+        return $this->hasMany(Notification::class, 'city_id', 'id');
+    }
+
+    public function traders()
+    {
+        return $this->hasMany(Trader::class);
     }
 }

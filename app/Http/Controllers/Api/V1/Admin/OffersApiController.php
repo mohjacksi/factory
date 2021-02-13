@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
+use App\Http\Filters\OffersFilter;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
 use App\Http\Resources\Admin\OfferResource;
@@ -16,25 +17,55 @@ class OffersApiController extends Controller
 {
     use MediaUploadingTrait;
 
+    /**
+     * @var OffersFilter
+     */
+    private $filter;
+
+    public function __construct(OffersFilter $filter)
+    {
+        $this->filter = $filter;
+    }
+
     public function index(Request $request)
     {
-        $offerQueryBuilder = Offer::with(['category', 'trader']);
+        $offerQueryBuilder = Offer::with(['category', 'trader'])->filter($this->filter)->where('date_end', '>=', now())->latest();
+
         //abort_if(Gate::denies('offer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $category_id = $request['category_id'];
+        $sub_category_id = $request['sub_category_id'];
         $trader_id = $request['trader_id'];
+        $description = $request['description'];
 
+        $city_id = $request['city_id'];
 
-        if(isset($trader_id))
-            $offerQueryBuilder = $offerQueryBuilder->where('trader_id',$trader_id);
-        if(isset($category_id))
-            $offerQueryBuilder = $offerQueryBuilder->where('category_id',$category_id);
-
+        if (isset($city_id)) {
+            $offerQueryBuilder = $offerQueryBuilder->where('city_id', $city_id);
+        }
+        if (isset($description)) {
+            $offerQueryBuilder = $offerQueryBuilder->where('description', 'like', "%$description%");
+        }
+        if (isset($trader_id)) {
+            if (!is_array($trader_id))
+                $trader_id = array($trader_id);
+            $offerQueryBuilder = $offerQueryBuilder->whereIn('trader_id', $trader_id);
+        }
+        if (isset($sub_category_id)) {
+            $offerQueryBuilder = $offerQueryBuilder->where('sub_category_id', $sub_category_id);
+        }
+        if (isset($category_id)) {
+            $offerQueryBuilder = $offerQueryBuilder->where('category_id', $category_id);
+        }
 
         return new OfferResource($offerQueryBuilder->orderBy('created_at', 'desc')->get());
     }
 
     public function store(StoreOfferRequest $request)
     {
+        $request['show_in_main_page'] = $request->has('show_in_main_page') ? 1 : 0;
+
+        $request['show_in_trader_page'] = $request->has('show_in_trader_page') ? 1 : 0;
+
         $offer = Offer::create($request->all());
 
         if ($request->input('images', false)) {
@@ -46,15 +77,19 @@ class OffersApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Offer $offer)
+    public function show($offer)
     {
         //abort_if(Gate::denies('offer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new OfferResource($offer->load(['category', 'trader']));
+        return new OfferResource(Offer::findOrFail($offer)->load(['category', 'trader']));
     }
 
     public function update(UpdateOfferRequest $request, Offer $offer)
     {
+        $request['show_in_main_page'] = $request->has('show_in_main_page') ? 1 : 0;
+
+        $request['show_in_trader_page'] = $request->has('show_in_trader_page') ? 1 : 0;
+
         $offer->update($request->all());
 
         if ($request->input('images', false)) {

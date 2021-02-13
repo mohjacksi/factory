@@ -38,7 +38,7 @@
                         <td>
                             @if($jobOffer->photo)
                                 <a href="{{ $jobOffer->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $jobOffer->photo->getUrl('thumb') }}">
+                                    <img src="{{ $jobOffer->photo->getUrl('preview') }}">
                                 </a>
                             @endif
                         </td>

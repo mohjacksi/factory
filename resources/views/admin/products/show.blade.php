@@ -1,20 +1,36 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.product.title') }}
+
+
+    <div class="card">
+        <div class="card-header">
+            {{ trans('global.relatedData') }}
+        </div>
+        <ul class="nav nav-tabs" >
+            <li class="nav-item bg-success mx-2">
+                <a class="nav-link text-white" href="{{route('admin.products.variants.index',$product)}}" role="tab" >
+                    {{ trans('cruds.variant.title') }}
+                </a>
+            </li>
+        </ul>
+
     </div>
 
-    <div class="card-body">
-        <div class="form-group">
+    <div class="card">
+        <div class="card-header">
+            {{ trans('global.show') }} {{ trans('cruds.product.title') }}
+        </div>
+
+        <div class="card-body">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.products.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
-            <table class="table table-bordered table-striped">
-                <tbody>
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ route('admin.products.index') }}">
+                        {{ trans('global.back_to_list') }}
+                    </a>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <tbody>
                     <tr>
                         <th>
                             {{ trans('cruds.product.fields.id') }}
@@ -30,7 +46,7 @@
                         <td>
                             @if($product->image)
                                 <a href="{{ $product->image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $product->image->getUrl('thumb') }}">
+                                    <img src="{{ $product->image->getUrl('preview') }}">
                                 </a>
                             @endif
                         </td>
@@ -41,6 +57,46 @@
                         </th>
                         <td>
                             {{ $product->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.detailed_title') }}
+                        </th>
+                        <td>
+                            {{ $product->detailed_title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.details') }}
+                        </th>
+                        <td>
+                            {{ $product->details }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.is_available') }}
+                        </th>
+                        <td>
+                            {{ $product->is_available }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.price_after_discount') }}
+                        </th>
+                        <td>
+                            {{ $product->price_after_discount }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.product_code') }}
+                        </th>
+                        <td>
+                            {{ $product->product_code }}
                         </td>
                     </tr>
                     <tr>
@@ -59,16 +115,98 @@
                             {{ $product->trader->name ?? '' }}
                         </td>
                     </tr>
-                </tbody>
-            </table>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.products.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.brand_name') }}
+                        </th>
+                        <td>
+                            {{ $product->brand->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.city_name') }}
+                        </th>
+                        <td>
+                            {{ $product->city?$product->city->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.department_name') }}
+                        </th>
+                        <td>
+                            {{ $product->department?$product->department->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.main_product_type_name') }}
+                        </th>
+                        <td>
+                            {{ $product->MainProductType?$product->MainProductType->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.sub_product_type_name') }}
+                        </th>
+                        <td>
+                            {{ $product->SubProductType?$product->SubProductType->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.main_product_service_type_name') }}
+                        </th>
+                        <td>
+                            {{ $product->MainProductServiceType?$product->MainProductServiceType->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.sub_product_service_type_name') }}
+                        </th>
+                        <td>
+                            {{ $product->SubProductServiceType?$product->SubProductServiceType->name : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.show_trader_name') }}
+                        </th>
+                        <td>
+                            {{ $product->show_trader_name?'نعم' : 'لا' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.show_in_trader_page') }}
+                        </th>
+                        <td>
+                            {{ $product->show_in_trader_page?'نعم' : 'لا' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.product.fields.show_in_main_page') }}
+                        </th>
+                        <td>
+                            {{ $product->show_in_main_page?'نعم' : 'لا' }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ route('admin.products.index') }}">
+                        {{ trans('global.back_to_list') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+
 
 
 

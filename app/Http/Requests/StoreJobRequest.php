@@ -5,13 +5,14 @@ namespace App\Http\Requests;
 use App\Models\Job;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class StoreJobRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(Request $request)
     {
-        return Gate::allows('job_create');
+        return $request->expectsJson()?true: Gate::allows('job_create');
     }
 
     public function rules()
@@ -19,24 +20,30 @@ class StoreJobRequest extends FormRequest
         return [
             'name'              => [
                 'string',
-                'required',
+//                'required',
             ],
             'image'             => [
-                'required',
+//                'required',
+            ],
+            'whats_app_number'  => [
+//                'required',
+            ],
+            'email' => [
+//                'required',
             ],
             'city_id'           => [
-                'required',
+//                'required',
                 'integer',
             ],
             'add_date'          => [
-                'required',
+//                'required',
                 'date_format:' . config('panel.date_format'),
             ],
             'details'           => [
-                'required',
+//                'required',
             ],
             'specialization_id' => [
-                'required',
+//                'required',
                 'integer',
             ],
         ];

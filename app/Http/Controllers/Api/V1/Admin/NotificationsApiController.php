@@ -13,34 +13,49 @@ use Symfony\Component\HttpFoundation\Response;
 
 class NotificationsApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $city_id = $request['city_id'];
+        $notificationQuery = Notification::with('city');
+        if (isset($city_id)) {
+            $notificationQuery = $notificationQuery->where('city_id', $city_id);
+        }
+
         //abort_if(Gate::denies('notification_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new NotificationResource(Notification::all());
+        return new NotificationResource($notificationQuery->get());
     }
 
     public function store(StoreNotificationRequest $request)
     {
-        $notification = Notification::create($request->all());
+        $notifications = [];
+        foreach ($request->city_id as $city_id) {
+            $notifications[] = Notification::create(
+                array_merge($request->except('city_id'), ['city_id' => $city_id])
+            );
+        }
 
-        return (new NotificationResource($notification))
+        return (new NotificationResource($notifications))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Notification $notification)
+    public function show($notification)
     {
         //abort_if(Gate::denies('notification_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new NotificationResource($notification);
+        return new NotificationResource(Notification::findOrFail($notification));
     }
 
     public function update(UpdateNotificationRequest $request, Notification $notification)
     {
-        $notification->update($request->all());
-
-        return (new NotificationResource($notification))
+        $notifications = [];
+        foreach ($request->city_id as $city_id) {
+            $notifications[] = Notification::update(
+                array_merge($request->except('city_id'), ['city_id' => $city_id])
+            );
+        }
+        return (new NotificationResource($notifications))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }

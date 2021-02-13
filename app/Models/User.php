@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Notifications\VerifyUserNotification;
+//use App\Notifications\VerifyUserNotification;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -25,6 +25,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $with = [
+        'roles',
+    ];
+
     protected $dates = [
         'email_verified_at',
         'created_at',
@@ -32,13 +36,16 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
+
     protected $fillable = [
         'name',
+        'phone_number',
+        'accept_notifications',
+        'city_id',
         'email',
         'email_verified_at',
         'password',
         'remember_token',
-        'phone_number',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -91,5 +98,10 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function AauthAcessToken()
+    {
+        return $this->hasMany('\App\OauthAccessToken');
     }
 }

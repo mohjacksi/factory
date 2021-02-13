@@ -20,6 +20,28 @@
                 <span class="help-block">{{ trans('cruds.job.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="whats_app_number">{{ trans('cruds.job.fields.whats_app_number') }}</label>
+                <input class="form-control {{ $errors->has('whats_app_number') ? 'is-invalid' : '' }}" type="tel" name="whats_app_number" id="whats_app_number" value="{{ old('whats_app_number', '') }}" required>
+                @if($errors->has('whats_app_number'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('whats_app_number') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.job.fields.whats_app_number_helper') }}</span>
+            </div>
+
+            <div class="form-group">
+                <label class="required" for="email">{{ trans('cruds.job.fields.email') }}</label>
+                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', '') }}" required>
+                @if($errors->has('email'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('email') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.job.fields.email_helper') }}</span>
+            </div>
+
+            <div class="form-group">
                 <label class="required" for="image">{{ trans('cruds.job.fields.image') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image-dropzone">
                 </div>
@@ -54,6 +76,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.job.fields.add_date_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label class="required" for="details">{{ trans('cruds.job.fields.details') }}</label>
                 <textarea class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" name="details" id="details" required>{{ old('details') }}</textarea>
@@ -64,6 +87,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.job.fields.details_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label class="required" for="specialization_id">{{ trans('cruds.job.fields.specialization') }}</label>
                 <select class="form-control select2 {{ $errors->has('specialization') ? 'is-invalid' : '' }}" name="specialization_id" id="specialization_id" required>
@@ -78,6 +102,22 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.job.fields.specialization_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('approved') ? 'is-invalid' : '' }}">
+                    <input class="form-check-input" type="checkbox" name="approved" id="approved" value="1"
+                        {{ old('approved', 0) == 1 || old('approved') === null ? 'checked' : '' }}>
+                    <label class="required form-check-label"
+                           for="approved">{{ trans('cruds.job.fields.approved') }}</label>
+                </div>
+                @if($errors->has('approved'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('approved') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.job.fields.approved_helper') }}</span>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

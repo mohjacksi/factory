@@ -30,7 +30,7 @@
                         <td>
                             @foreach($advertisement->images as $key => $media)
                                 <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                    <img src="{{ $media->getUrl() }}" width="50" height="50">
                                 </a>
                             @endforeach
                         </td>

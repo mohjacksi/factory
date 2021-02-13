@@ -10,11 +10,14 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->longText('details');
-            $table->date('add_date');
-            $table->string('phone_number');
+            $table->string('name')->nullable();
+            $table->text('detailed_title')->nullable();
+            $table->longText('details')->nullable();
+            $table->date('add_date')->nullable();
+            $table->string('price')->nullable();
+            $table->string('phone_number')->nullable();
             $table->boolean('approved')->default(0);
+            $table->boolean('added_by_admin')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

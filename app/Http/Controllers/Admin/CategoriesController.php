@@ -7,16 +7,26 @@ use App\Http\Requests\MassDestroyCategoryRequest;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Models\Helpers\PermissionHelper;
+use App\Repositories\CouponRepository;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoriesController extends Controller
 {
+    protected $repo;
+
+    public function __construct(CouponRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
     public function index(Request $request)
     {
-        //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = Category::query()->select(sprintf('%s.*', (new Category)->table));
@@ -25,10 +35,16 @@ class CategoriesController extends Controller
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
+
             $table->editColumn('actions', function ($row) {
+//                $name_seperated = explode(' ',$row->name);
+//                $name_imploded_with_underscore  = implode('_',$name_seperated);
                 $viewGate      = 'category_show';
+//                $viewGate      = $name_imploded_with_underscore.'_show';
                 $editGate      = 'category_edit';
+//                $editGate      = $name_imploded_with_underscore.'_edit';
                 $deleteGate    = 'category_delete';
+//                $deleteGate    = $name_imploded_with_underscore.'_delete';
                 $crudRoutePart = 'categories';
 
                 return view('partials.datatablesActions', compact(
@@ -50,7 +66,7 @@ class CategoriesController extends Controller
                 return $row->type ? Category::TYPE_RADIO[$row->type] : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder']);
+            $table->rawColumns(['actions','placeholder']);
 
             return $table->make(true);
         }
@@ -69,6 +85,8 @@ class CategoriesController extends Controller
     {
         $category = Category::create($request->all());
 
+        PermissionHelper::createPermissionWithModelAttribute($category->name);
+
         return redirect()->route('admin.categories.index');
     }
 
@@ -82,6 +100,8 @@ class CategoriesController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->all());
+
+        PermissionHelper::createPermissionWithModelAttribute($category->name);
 
         return redirect()->route('admin.categories.index');
     }
@@ -99,14 +119,14 @@ class CategoriesController extends Controller
     {
         //abort_if(Gate::denies('category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $category->delete();
+        $category->forcedelete();
 
         return back();
     }
 
     public function massDestroy(MassDestroyCategoryRequest $request)
     {
-        Category::whereIn('id', request('ids'))->delete();
+        Category::whereIn('id', request('ids'))->forcedelete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

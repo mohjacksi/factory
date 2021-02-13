@@ -33,12 +33,28 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.job.fields.email') }}
+                        </th>
+                        <td>
+                            {{ $job->email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.job.fields.whats_app_number') }}
+                        </th>
+                        <td>
+                            {{ $job->whats_app_number }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.job.fields.image') }}
                         </th>
                         <td>
                             @if($job->image)
                                 <a href="{{ $job->image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $job->image->getUrl('thumb') }}">
+                                    <img src="{{ $job->image->getUrl('preview') }}">
                                 </a>
                             @endif
                         </td>

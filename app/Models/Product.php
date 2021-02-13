@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -11,13 +12,19 @@ use \DateTimeInterface;
 
 class Product extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, Filterable;
 
     public $table = 'products';
 
     protected $appends = [
         'image',
     ];
+
+
+    protected $with = [
+         'variants',
+         'brand',
+     ];
 
     protected $dates = [
         'created_at',
@@ -27,8 +34,24 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'show_trader_name',
+        'city_id',
+        'department_id',
+        'details',
+        'detailed_title',
+        'price_after_discount',
+        'product_code',
+        'brand_id',
+        'show_in_trader_page',
+        'show_in_main_page',
         'price',
+        'is_available',
         'trader_id',
+        'main_product_type_id',
+        'main_product_service_type_id',
+        'sub_product_type_id',
+        'sub_product_service_type_id',
+        'is_available',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -61,5 +84,60 @@ class Product extends Model implements HasMedia
     public function trader()
     {
         return $this->belongsTo(Trader::class, 'trader_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function showInTraderPage()
+    {
+        return $this->show_in_trader_page?'نعم':'لا';
+    }
+
+
+    public function showInMainPage()
+    {
+        return $this->show_in_main_page?'نعم':'لا';
+    }
+
+    public function MainProductType()
+    {
+        return $this->belongsTo(MainProductType::class);
+    }
+
+    public function SubProductType()
+    {
+        return $this->belongsTo(SubProductType::class);
+    }
+
+
+    public function MainProductServiceType()
+    {
+        return $this->belongsTo(MainProductServiceType::class);
+    }
+
+    public function SubProductServiceType()
+    {
+        return $this->belongsTo(SubProductServiceType::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function variants()
+    {
+        return $this->belongsToMany(\App\Models\Variant::class);
     }
 }

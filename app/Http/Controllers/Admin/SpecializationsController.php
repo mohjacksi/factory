@@ -96,14 +96,14 @@ class SpecializationsController extends Controller
     {
         //abort_if(Gate::denies('specialization_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $specialization->delete();
+        $specialization->forcedelete();
 
         return back();
     }
 
     public function massDestroy(MassDestroySpecializationRequest $request)
     {
-        Specialization::whereIn('id', request('ids'))->delete();
+        Specialization::whereIn('id', request('ids'))->forcedelete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

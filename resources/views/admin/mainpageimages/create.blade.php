@@ -20,6 +20,24 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.advertisement.fields.images_helper') }}</span>
             </div>
+
+
+            <div class="form-group">
+                <label class="required" for="city_id">{{ trans('cruds.item_advertisement.fields.city_name') }}</label>
+                <select class="form-control select2 {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city_id"
+                        id="city_id" required>
+                    @foreach($cities as $id => $city)
+                        <option value="{{ $id }}" {{ old('city_id') == $id ? 'selected' : '' }}>{{ $city }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('city'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('city') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.item_advertisement.fields.city_name_helper') }}</span>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

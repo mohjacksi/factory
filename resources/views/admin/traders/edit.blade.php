@@ -21,6 +21,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.trader.fields.images_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label for="name">{{ trans('cruds.trader.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $trader->name) }}">
@@ -31,6 +32,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.trader.fields.name_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label for="address">{{ trans('cruds.trader.fields.address') }}</label>
                 <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="text" name="address" id="address" value="{{ old('address', $trader->address) }}">
@@ -81,6 +83,39 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.trader.fields.whatsapp_helper') }}</span>
             </div>
+
+
+
+            <div class="form-group">
+                <label for="activeness">{{ trans('cruds.trader.fields.activeness') }}</label>
+                <input class="form-control {{ $errors->has('activeness') ? 'is-invalid' : '' }}" type="text" name="activeness" id="activeness" value="{{ old('activeness', $trader->activeness) }}">
+                @if($errors->has('activeness'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('activeness') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.trader.fields.activeness_helper') }}</span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="city_id">{{ trans('cruds.trader.fields.city_name') }}</label>
+                <select class="form-control select2 {{ $errors->has('city') ? 'is-invalid' : '' }}"
+                        name="city_id" id="city_id">
+                    @foreach($cities as $id => $city)
+                        <option
+                            value="{{ $id }}" {{ (old('city_id') ? old('city_id') : $trader->city->id ?? '') == $id ? 'selected' : '' }}>{{ $city }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('city'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('city') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.trader.fields.city_name_helper') }}</span>
+            </div>
+
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

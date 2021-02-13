@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,13 +13,16 @@ use \DateTimeInterface;
 
 class Job extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait,Filterable;
 
-    public $table = 'jobs';
+    public $table = 'jobs_app';
 
     protected $appends = [
         'image',
+        'is_approved',
     ];
+
+
 
     protected $dates = [
         'add_date',
@@ -29,6 +33,9 @@ class Job extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'approved',
+        'whats_app_number',
+        'email',
         'city_id',
         'add_date',
         'details',
@@ -80,5 +87,15 @@ class Job extends Model implements HasMedia
     public function specialization()
     {
         return $this->belongsTo(Specialization::class, 'specialization_id');
+    }
+
+    /**
+     * check approved
+     *
+     * @return string
+     */
+    public function getIsApprovedAttribute()
+    {
+        return $this->approved? 'نعم' : 'لا';
     }
 }

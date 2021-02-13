@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,14 +13,18 @@ use \DateTimeInterface;
 
 class Offer extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, Filterable;
 
     public $table = 'offers';
 
     protected $appends = [
         'images',
+        'type_of_category',
     ];
 
+    protected $with = [
+        'city'
+    ];
     protected $dates = [
         'add_date',
         'date_end',
@@ -30,7 +35,13 @@ class Offer extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'city_id',
+        'description',
+        'show_in_trader_page',
+        'show_in_main_page',
+        'show_in_main_offers_page',
         'category_id',
+        'sub_category_id',
         'add_date',
         'date_end',
         'phone_number',
@@ -58,6 +69,11 @@ class Offer extends Model implements HasMedia
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function sub_category()
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
+
     public function getAddDateAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
@@ -83,15 +99,48 @@ class Offer extends Model implements HasMedia
         return $this->belongsTo(Trader::class, 'trader_id');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
     public function getImagesAttribute()
     {
         $files = $this->getMedia('images');
-        $files->each(function ($item) {
-            $item->url       = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
-        });
+        if ($files) {
+
+            $files->each(function ($item) {
+                $item->url = $item->getUrl();
+                $item->thumbnail = $item->getUrl('thumb');
+                $item->preview = $item->getUrl('preview');
+            });
+        }
 
         return $files;
     }
+
+
+    public function showInTraderPage()
+    {
+        return $this->show_in_trader_page ? 'نعم' : 'لا';
+    }
+
+
+    public function showInMainPage()
+    {
+        return $this->show_in_main_page ? 'نعم' : 'لا';
+    }
+
+
+    /**
+     * @return
+     */
+    public function getTypeOfCategoryAttribute()
+    {
+        $category = new \ReflectionClass(new Category);
+//        $constants = array_flip($category->getConstants());
+        $constants = $category->getConstants();
+        return $this->category ? $constants['TYPE_RADIO'][$this->category->type] : '';
+    }
+
 }

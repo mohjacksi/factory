@@ -1,59 +1,141 @@
 <?php
 
-Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin',
- //'middleware' => ['auth:api']
+Route::group(
+    ['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin',
+//         'middleware' => ['auth:api']
     ],
-  function () {
-    // Permissions
-    Route::apiResource('permissions', 'PermissionsApiController');
+    function () {
+        // Permissions
+        Route::apiResource('permissions', 'PermissionsApiController');
 
-    // Roles
-    Route::apiResource('roles', 'RolesApiController');
+        // Roles
+        Route::group(['middleware' => 'can:role_access'], function () {
+            Route::apiResource('roles', 'RolesApiController');
+        });
 
-    // Users
-    Route::apiResource('users', 'UsersApiController');
+        // Users
+        Route::apiResource('users', 'UsersApiController');
 
-    // MainPageImages
-    Route::post('mainpageimages/media', 'MainPageImagesApiController@storeMedia')->name('mainpageimages.storeMedia');
-    Route::apiResource('mainpageimages', 'MainPageImagesApiController');
+        // MainPageImages
+        Route::post('mainpageimages/media', 'MainPageImagesApiController@storeMedia')->name('mainpageimages.storeMedia');
+        Route::apiResource('mainpageimages', 'MainPageImagesApiController');
 
-    // Cities
-    Route::apiResource('cities', 'CitiesApiController');
 
-    // Departments
-    Route::post('departments/media', 'DepartmentsApiController@storeMedia')->name('departments.storeMedia');
-    Route::apiResource('departments', 'DepartmentsApiController');
+        // MainPageImages
+        Route::post('item_advertisements/media', 'ItemAdvertisementsApiController@storeMedia')->name('item_advertisements.storeMedia');
+        Route::apiResource('item_advertisements', 'ItemAdvertisementsApiController');
 
-    // Categories
-    Route::apiResource('categories', 'CategoriesApiController');
+        // Cities
+        Route::apiResource('cities', 'CitiesApiController');
 
-    // Offers
-    Route::post('offers/media', 'OffersApiController@storeMedia')->name('offers.storeMedia');
-    Route::apiResource('offers', 'OffersApiController');
+        // Colors
+        Route::apiResource('colors', 'ColorsApiController');
 
-    // Specializations
-    Route::apiResource('specializations', 'SpecializationsApiController');
+        // Sizes
+        Route::apiResource('sizes', 'SizesApiController');
 
-    // Jobs
-    Route::post('jobs/media', 'JobsApiController@storeMedia')->name('jobs.storeMedia');
-    Route::apiResource('jobs', 'JobsApiController');
+        // Brands
+        Route::apiResource('brands', 'BrandsApiController');
 
-    // News
-    Route::post('news/media', 'NewsApiController@storeMedia')->name('news.storeMedia');
-    Route::apiResource('news', 'NewsApiController');
+        // Departments
+        Route::post('departments/media', 'DepartmentsApiController@storeMedia')->name('departments.storeMedia');
+        Route::apiResource('departments', 'DepartmentsApiController');
+        Route::get('get_city_of_trader/{id?}', 'DepartmentsApiController@getCityOfTrader');
+        Route::get('get_traders_of_city/{id?}', 'DepartmentsApiController@getTradersOfCity');
+        Route::get('get_departments_of_trader/{id?}', 'DepartmentsApiController@getDepartmentsOfTrader');
 
-    // Notifications
-    Route::apiResource('notifications', 'NotificationsApiController');
+        // تصنيف قسم التسوق الرئيسية
+        Route::apiResource('categories', 'CategoriesApiController');
 
-    // Job Offers
-    Route::post('job-offers/media', 'JobOfferApiController@storeMedia')->name('job-offers.storeMedia');
-    Route::apiResource('job-offers', 'JobOfferApiController');
 
-    // Traders
-    Route::post('traders/media', 'TraderApiController@storeMedia')->name('traders.storeMedia');
-    Route::apiResource('traders', 'TraderApiController');
+        // تصنيف منتجات رئيسي
+        Route::apiResource('main_product_types', 'MainProductTypesApiController');
 
-    // Products
-    Route::post('products/media', 'ProductsApiController@storeMedia')->name('products.storeMedia');
-    Route::apiResource('products', 'ProductsApiController');
+
+        //تصنيف خدمات منتجات رئيسي
+        Route::apiResource('main_product_service_types', 'MainProductServiceTypesApiController');
+
+
+        // تصنيف قسم التسوق الفرعية
+        Route::apiResource('sub_categories', 'SubCategoriesApiController');
+        Route::get('get_categories_ajax/{id}', 'SubCategoriesApiController@getCategoryAjax');
+
+        // تصنيف منتجات فرعي
+        Route::apiResource('sub_product_types', 'SubProductTypesApiController');
+        Route::get('get_main_product_type_ajax/{id}', 'SubProductTypesApiController@getMainProductTypeAjax');
+
+
+        //تصنيف خدمات منتجات فرعي
+        Route::apiResource('sub_product_service_types', 'SubProductServiceTypesApiController');
+        Route::get('get_main_product_service_type_ajax/{id}', 'SubProductServiceTypesApiController@SubProductServiceTypeAjax');
+
+
+        //تصنيف الإعلانات رئيسي
+        Route::apiResource('news_categories', 'NewsCategoriesApiController');
+
+
+        //تصنيف فرعي الإعلانات
+        Route::apiResource('news_sub_categories', 'NewsSubCategoriesApiController');
+        Route::get('get_news_sub_categories_ajax/{id}', 'NewsSubCategoriesApiController@getNewsSubCategoryAjax');
+
+        // Coupons
+        Route::apiResource('coupons', 'CouponsApiController');
+
+        // Offers
+        Route::post('offers/media', 'OffersApiController@storeMedia')->name('offers.storeMedia');
+        Route::apiResource('offers', 'OffersApiController');
+
+        // Specializations
+        Route::apiResource('specializations', 'SpecializationsApiController');
+
+        // Jobs
+        Route::post('jobs/media', 'JobsApiController@storeMedia')->name('jobs.storeMedia');
+        Route::apiResource('jobs', 'JobsApiController');
+
+        // News
+        Route::post('news/media', 'NewsApiController@storeMedia')->name('news.storeMedia');
+        Route::apiResource('news', 'NewsApiController'); // details field for filter
+
+        // Notifications
+        Route::apiResource('notifications', 'NotificationsApiController');
+
+        // Job Offers
+        Route::post('job-offers/media', 'JobOfferApiController@storeMedia')->name('job-offers.storeMedia');
+        Route::apiResource('job-offers', 'JobOfferApiController'); //about  field for filter
+
+        // Traders
+        Route::post('traders/media', 'TraderApiController@storeMedia')->name('traders.storeMedia');
+        Route::apiResource('traders', 'TraderApiController');
+
+        // Products
+        Route::post('products/media', 'ProductsApiController@storeMedia')->name('products.storeMedia');
+        Route::apiResource('products', 'ProductsApiController');
+
+        // Variants
+        Route::post('variants/media', 'VariantsApiController@storeMedia')->name('variants.storeMedia');
+        Route::apiResource('products.variants', 'VariantsApiController');
+
+
+        Route::group([
+            'middleware' => ['auth:api']
+        ],
+            function () {
+                // Orders
+                Route::apiResource('orders', 'OrdersApiController');
+            });
+    }
+);
+
+Route::namespace('Api\V1\Admin')->group(function () {
+    Route::get('/select/cities', 'CitiesSelectController@select_city')->name('cities.select');
 });
+
+Route::group(
+    ['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Auth',],
+    function () {
+        //Auth API
+        Route::post('register', 'AuthApiController@register');
+        Route::post('login', 'AuthApiController@login');
+        // + other routes in the same namespace
+    }
+);

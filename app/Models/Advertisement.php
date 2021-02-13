@@ -26,6 +26,7 @@ class Advertisement extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'city_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -38,19 +39,27 @@ class Advertisement extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+//        dd($media);
+        foreach ($media as $m) {
+            $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+            $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        }
     }
 
     public function getImagesAttribute()
     {
         $files = $this->getMedia('images');
         $files->each(function ($item) {
-            $item->url       = $item->getUrl();
+            $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
+            $item->preview = $item->getUrl('preview');
         });
 
         return $files;
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
     }
 }

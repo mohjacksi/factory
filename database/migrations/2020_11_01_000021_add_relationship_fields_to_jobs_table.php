@@ -8,11 +8,14 @@ class AddRelationshipFieldsToJobsTable extends Migration
 {
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::table('jobs', function (Blueprint $table) {
-            $table->unsignedInteger('city_id');
-            $table->foreign('city_id', 'city_fk_2472538')->references('id')->on('cities');
-            $table->unsignedInteger('specialization_id');
-            $table->foreign('specialization_id', 'specialization_fk_2472544')->references('id')->on('specializations');
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id', 'city_fk_2472538')->references('id')->on('cities')->cascadeOnDelete();
+            $table->unsignedBigInteger('specialization_id');
+            $table->foreign('specialization_id', 'specialization_fk_2472544')->references('id')->on('specializations')->cascadeOnDelete();
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

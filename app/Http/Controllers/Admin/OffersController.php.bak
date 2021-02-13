@@ -127,14 +127,14 @@ class OffersController extends Controller
     {
         //abort_if(Gate::denies('offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $offer->delete();
+        $offer->forcedelete();
 
         return back();
     }
 
     public function massDestroy(MassDestroyOfferRequest $request)
     {
-        Offer::whereIn('id', request('ids'))->delete();
+        Offer::whereIn('id', request('ids'))->forcedelete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

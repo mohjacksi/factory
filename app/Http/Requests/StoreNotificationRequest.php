@@ -25,6 +25,10 @@ class StoreNotificationRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'city_id' => [
+                'required',
+                'exists:cities,id',
+            ],
         ];
     }
 }

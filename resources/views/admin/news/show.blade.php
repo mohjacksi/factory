@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.news.title') }}
-    </div>
+    <div class="card">
+        <div class="card-header">
+            {{ trans('global.show') }} {{ trans('cruds.news.title') }}
+        </div>
 
-    <div class="card-body">
-        <div class="form-group">
+        <div class="card-body">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.news.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
-            <table class="table table-bordered table-striped">
-                <tbody>
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ route('admin.news.index') }}">
+                        {{ trans('global.back_to_list') }}
+                    </a>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <tbody>
                     <tr>
                         <th>
                             {{ trans('cruds.news.fields.id') }}
@@ -37,9 +37,13 @@
                         </th>
                         <td>
                             @if($news->image)
-                                <a href="{{ $news->image->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $news->image->getUrl('thumb') }}">
-                                </a>
+                                @forelse($news_medias as $news_media)
+                                    <a href="{{ $news_media->getUrl() }}" target="_blank"
+                                       style="display: inline-block">
+                                        <img src="{{ $news_media->getUrl('preview') }}">
+                                    </a>
+                                @empty
+                                @endforelse
                             @endif
                         </td>
                     </tr>
@@ -53,15 +57,31 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.news.fields.category') }}
+                            {{ trans('cruds.news.fields.detailed_title') }}
                         </th>
                         <td>
-                            {{ $news->category->name ?? '' }}
+                            {{ $news->detailed_title }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.news.fields.city') }}
+                            {{ trans('cruds.news.fields.news_category_name') }}
+                        </th>
+                        <td>
+                            {{ $news->news_category->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.news.fields.news_sub_category_name') }}
+                        </th>
+                        <td>
+                            {{ $news->news_sub_category->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.news.fields.city_name') }}
                         </th>
                         <td>
                             {{ $news->city->name ?? '' }}
@@ -85,22 +105,38 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.news.fields.price') }}
+                        </th>
+                        <td>
+                            {{ $news->price_value }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.news.fields.approved') }}
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $news->approved ? 'checked' : '' }}>
                         </td>
                     </tr>
-                </tbody>
-            </table>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.news.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.news.fields.added_by_admin') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $news->added_by_admin ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ route('admin.news.index') }}">
+                        {{ trans('global.back_to_list') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 

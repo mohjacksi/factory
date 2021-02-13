@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
+
+use Laravel\Passport\Bridge\PersonalAccessGrant;
+use League\OAuth2\Server\AuthorizationServer;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,8 +30,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        if (!app()->runningInConsole()) {
-            Passport::routes();
-        };
+        Passport::routes();
+//        if (!app()->runningInConsole()) {
+//        };
+
+        Passport::tokensExpireIn(Carbon::now()->addYears(40));
+        Passport::refreshTokensExpireIn(Carbon::now()->addYears(40));
+        Passport::personalAccessTokensExpireIn(Carbon::now()->addYears(40));
     }
 }

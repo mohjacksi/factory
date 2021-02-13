@@ -8,6 +8,8 @@ class CreateNotificationsTable extends Migration
 {
     public function up()
     {
+//        Schema::disableForeignKeyConstraints();
+
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
@@ -15,5 +17,6 @@ class CreateNotificationsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+//        Schema::enableForeignKeyConstraints();
     }
 }

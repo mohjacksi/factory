@@ -68,4 +68,7 @@ $('button.sidebar-toggler').click(function () {
       $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
     }, 275);
   })
-})
+
+
+});
+

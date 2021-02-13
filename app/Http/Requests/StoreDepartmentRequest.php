@@ -24,13 +24,28 @@ class StoreDepartmentRequest extends FormRequest
             'logo'         => [
                 'required',
             ],
+            'item_number'         => [
+                'required',
+            ],
             'city_id'      => [
                 'required',
                 'integer',
             ],
+            'trader_id'      => [
+                'required',
+                'exists:traders,id',
+            ],
             'phone_number' => [
                 'string',
                 'required',
+            ],
+            'sub_category_id' => [
+                'required',
+                'exists:departments_sub_categories,id',
+            ],
+            'category_id' => [
+                'required',
+                'exists:categories,id',
             ],
         ];
     }

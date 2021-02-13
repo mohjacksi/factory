@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -11,12 +13,13 @@ use \DateTimeInterface;
 
 class Department extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, Filterable;
 
     public $table = 'departments';
 
     protected $appends = [
         'logo',
+        'type_of_category',
     ];
 
     protected $dates = [
@@ -29,8 +32,12 @@ class Department extends Model implements HasMedia
         'name',
         'about',
         'city_id',
+        'item_number',
         'phone_number',
         'category_id',
+        'sub_category_id',
+        'show_in_main_page',
+        'show_in_main_departments_page',
         'trader_id',
         'created_at',
         'updated_at',
@@ -53,9 +60,9 @@ class Department extends Model implements HasMedia
         $file = $this->getMedia('logo')->last();
 
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
@@ -70,8 +77,31 @@ class Department extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function sub_category()
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
+
+    /**
+     * @return
+     */
+    public function getTypeOfCategoryAttribute()
+    {
+        $category = new \ReflectionClass(new Category);
+//        $constants = array_flip($category->getConstants());
+        $constants = $category->getConstants();
+        return $this->category ? $constants['TYPE_RADIO'][$this->category->type] : '';
+    }
+
+
     public function trader()
     {
         return $this->belongsTo(Trader::class, 'trader_id');
     }
+
+
 }

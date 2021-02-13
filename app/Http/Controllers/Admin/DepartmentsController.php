@@ -7,37 +7,76 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyDepartmentRequest;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
+use App\Imports\DepartmentsImport;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Department;
+use App\Models\DepartmentExcel;
+use App\Models\Helpers\UploadExcel;
+use App\Models\SubCategory;
+use App\Repositories\GateRepository;
+use Dotenv\Exception\ValidationException;
 use Gate;
 use Illuminate\Http\Request;
+use Excel;
+use finfo;
+
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Exception;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Trader;
 
-
 class DepartmentsController extends Controller
 {
     use MediaUploadingTrait;
+
+
+    /**
+     * @var GateRepository
+     */
+    private $repo;
+
+
+    /**
+     * ProductsController constructor.
+     * @param GateRepository $repo
+     */
+    public function __construct(GateRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
 
     public function index(Request $request)
     {
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($request->ajax()) {
+        $this->repo->user = auth()->user();
 
-            $query = Department::with(['city', 'category','trader'])->select(sprintf('%s.*', (new Department)->table));
+        if ($request->ajax()) {
+            $query = Department::with(['city', 'category', 'trader', 'sub_category'])
+                ->orderBy('item_number')
+                ->select(sprintf('%s.*', (new Department)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'department_show';
-                $editGate      = 'department_edit';
-                $deleteGate    = 'department_delete';
+                $parameters = [
+                    $row->category->name,
+                    $row->category->type,
+                    $row->sub_category->name,
+                ];
+
+                $viewGate = $this->repo->get_gate($parameters, 'department', '_show');
+                $editGate = $this->repo->get_gate($parameters, 'department', '_edit');
+                $deleteGate = $this->repo->get_gate($parameters, 'department', '_delete');
+
                 $crudRoutePart = 'departments';
 
                 return view('partials.datatablesActions', compact(
@@ -48,12 +87,21 @@ class DepartmentsController extends Controller
                     'row'
                 ));
             });
-
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
+
+            $table->editColumn('item_number', function ($row) {
+                return $row->item_number;
+            });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : "";
+            });
+            $table->editColumn('show_in_main_page', function ($row) {
+                return $row->show_in_main_page;
+            });
+            $table->editColumn('show_in_main_departments_page', function ($row) {
+                return $row->show_in_main_departments_page;
             });
             $table->editColumn('logo', function ($row) {
                 if ($photo = $row->logo) {
@@ -76,8 +124,15 @@ class DepartmentsController extends Controller
             $table->editColumn('phone_number', function ($row) {
                 return $row->phone_number ? $row->phone_number : "";
             });
+
             $table->addColumn('category_name', function ($row) {
                 return $row->category ? $row->category->name : '';
+            });
+            $table->addColumn('sub_category_name', function ($row) {
+                return $row->sub_category ? $row->sub_category->name : '';
+            });
+            $table->addColumn('sub_category_name', function ($row) {
+                return $row->sub_category ? $row->sub_category->name : '';
             });
             $table->addColumn('trader_name', function ($row) {
                 return $row->trader ? $row->trader->name : '';
@@ -87,11 +142,21 @@ class DepartmentsController extends Controller
             return $table->make(true);
         }
 
-        $cities     = City::get();
+        $cities = City::get();
         $categories = Category::get();
-        $traders    = Trader::get();
+        $sub_categories = SubCategory::get();
+        $traders = Trader::get();
 
-        return view('admin.departments.index', compact('cities', 'categories','traders'));
+
+        $category = new \ReflectionClass(new Category);
+        $constants = $category->getConstants();
+        $constants = $constants['TYPE_RADIO'];
+
+        $constants_flips = array_flip($constants);
+        $department_excel_not_read_count = DepartmentExcel::where('is_read', 0)->count();
+
+
+        return view('admin.departments.index', compact('sub_categories', 'cities', 'categories', 'constants_flips', 'traders', 'department_excel_not_read_count', 'constants'));
     }
 
     public function create()
@@ -104,12 +169,22 @@ class DepartmentsController extends Controller
 
         $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.departments.create', compact('cities', 'categories','traders'));
+        return view('admin.departments.create', compact('cities', 'categories', 'traders'));
     }
 
     public function store(StoreDepartmentRequest $request)
     {
+        $request['show_in_main_departments_page'] = $request->show_in_main_departments_page ? 1 : 0;
+
+        $request['show_in_main_page'] = $request->show_in_main_page ? 1 : 0;
+
+        if (!$request->item_number) {
+            $last_item_number = Department::latest()->first()->item_number;
+            $request['item_number'] = $last_item_number->item_number + 1;
+        }
+
         $department = Department::create($request->all());
+
 
         if ($request->input('logo', false)) {
             $department->addMedia(storage_path('tmp/uploads/' . $request->input('logo')))->toMediaCollection('logo');
@@ -133,12 +208,17 @@ class DepartmentsController extends Controller
         $department->load('city', 'category');
 
         $traders = Trader::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $sub_category_id = $department->sub_category->id;
 
-        return view('admin.departments.edit', compact('cities', 'categories', 'department','traders'));
+        return view('admin.departments.edit', compact('cities', 'categories', 'department', 'traders','sub_category_id'));
     }
 
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
+        $request['show_in_main_departments_page'] = $request->show_in_main_departments_page ? 1 : 0;
+
+        $request['show_in_main_page'] = $request->show_in_main_page ? 1 : 0;
+
         $department->update($request->all());
 
         if ($request->input('logo', false)) {
@@ -185,11 +265,47 @@ class DepartmentsController extends Controller
     {
         //abort_if(Gate::denies('department_create') && Gate::denies('department_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Department();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Department();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
+
+    /**
+     * upload from excel part in index blade
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function uploadExcel(Request $request, $id = null)
+    {
+        $user = Auth::user();
+
+        if (in_array(1, $user->roles()->pluck('role_id')->toArray())) {
+
+            list($departmentExcel, $departmentExcelMedia, $file) = UploadExcel::prepareFileForExcelUpload($id, $request, new DepartmentExcel);
+
+            try {
+
+                UploadExcel::executeUploadExcel(DepartmentsImport::class, $file, $departmentExcel, $departmentExcelMedia);
+
+                return back()->with('success', 'تم الإضافة');
+
+            } catch (ValidationException $e) {
+                DB::rollback();
+                return back()->with('error', $e->getMessage());
+            }
+
+        } else {
+            $departmentExcel = DepartmentExcel::create([
+                'user_id' => $user->id
+            ]);
+            $departmentExcel->addMedia($request->file('excel_file'))->toMediaCollection('file');
+
+            return back()->with('success', 'تم الإضافة، بإنتظار مراجعة الأدمن');
+        }
+    }
+
 }

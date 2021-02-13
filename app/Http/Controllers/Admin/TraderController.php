@@ -7,9 +7,17 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyTraderRequest;
 use App\Http\Requests\StoreTraderRequest;
 use App\Http\Requests\UpdateTraderRequest;
+use App\Imports\TradersImport;
+use App\Models\City;
+use App\Models\Helpers\UploadExcel;
 use App\Models\Trader;
+use App\Models\TraderExcel;
+use Dotenv\Exception\ValidationException;
 use Gate;
+use Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,16 +31,16 @@ class TraderController extends Controller
         //abort_if(Gate::denies('trader_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Trader::query()->select(sprintf('%s.*', (new Trader)->table));
+            $query = Trader::with(['city'])->select(sprintf('%s.*', (new Trader)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'trader_show';
-                $editGate      = 'trader_edit';
-                $deleteGate    = 'trader_delete';
+                $viewGate = 'trader_show';
+                $editGate = 'trader_edit';
+                $deleteGate = 'trader_delete';
                 $crudRoutePart = 'traders';
 
                 return view('partials.datatablesActions', compact(
@@ -47,6 +55,14 @@ class TraderController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
+
+            $table->editColumn('activeness', function ($row) {
+                return $row->activeness ? $row->activeness : "";
+            });
+            $table->addColumn('city_name', function ($row) {
+                return $row->city ? $row->city->name : "";
+            });
+
             $table->editColumn('images', function ($row) {
                 if (!$row->images) {
                     return '';
@@ -84,14 +100,22 @@ class TraderController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.traders.index');
+        $traders = Trader::all();
+
+        $cities = City::all();
+
+        $trader_excel_not_read_count = TraderExcel::where('is_read', 0)->count();
+
+        return view('admin.traders.index',compact('traders','cities','trader_excel_not_read_count'));
     }
 
     public function create()
     {
         //abort_if(Gate::denies('trader_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.traders.create');
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.traders.create',compact('cities'));
     }
 
     public function store(StoreTraderRequest $request)
@@ -113,7 +137,9 @@ class TraderController extends Controller
     {
         //abort_if(Gate::denies('trader_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.traders.edit', compact('trader'));
+        $cities = City::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.traders.edit', compact('trader','cities'));
     }
 
     public function update(UpdateTraderRequest $request, Trader $trader)
@@ -166,11 +192,46 @@ class TraderController extends Controller
     {
         //abort_if(Gate::denies('trader_create') && Gate::denies('trader_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Trader();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Trader();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
+
+    /**
+     * upload from excel part in index blade
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function uploadExcel(Request $request, $id = null)
+    {
+        $user = Auth::user();
+
+        if (in_array(1, $user->roles()->pluck('role_id')->toArray())) {
+
+            list($productExcel, $productExcelMedia, $file) = UploadExcel::prepareFileForExcelUpload($id, $request, new TraderExcel);
+            try {
+
+                UploadExcel::executeUploadExcel(TradersImport::class, $file, $productExcel, $productExcelMedia);
+
+                return back()->with('success', 'تم الإضافة');
+
+            } catch (ValidationException $e) {
+                DB::rollback();
+                return back()->with('error', $e->getMessage());
+            }
+
+        } else {
+            $productExcel = TraderExcel::create([
+                'user_id' => $user->id
+            ]);
+            $productExcel->addMedia($request->file('excel_file'))->toMediaCollection('file');
+
+            return back()->with('success', 'تم الإضافة، بإنتظار مراجعة الأدمن');
+        }
+    }
+
 }

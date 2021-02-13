@@ -30,7 +30,7 @@
                         <td>
                             @foreach($trader->images as $key => $media)
                                 <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                    <img src="{{ $media->getUrl('preview') }}">
                                 </a>
                             @endforeach
                         </td>
@@ -41,6 +41,14 @@
                         </th>
                         <td>
                             {{ $trader->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.trader.fields.activeness') }}
+                        </th>
+                        <td>
+                            {{ $trader->activeness}}
                         </td>
                     </tr>
                     <tr>
@@ -81,6 +89,14 @@
                         </th>
                         <td>
                             {{ $trader->whatsapp }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.trader.fields.city_name') }}
+                        </th>
+                        <td>
+                            {{ $trader->city ? $trader->city->name : "" }}
                         </td>
                     </tr>
                 </tbody>

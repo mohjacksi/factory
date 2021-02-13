@@ -19,6 +19,8 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.name_helper') }}</span>
             </div>
+
+
             <div class="form-group">
                 <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
                 <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email') }}" required>
@@ -39,6 +41,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label class="required" for="roles">{{ trans('cruds.user.fields.roles') }}</label>
                 <div style="padding-bottom: 4px">
@@ -57,6 +60,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.roles_helper') }}</span>
             </div>
+            
             <div class="form-group">
                 <label for="phone_number">{{ trans('cruds.user.fields.phone_number') }}</label>
                 <input class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number', '') }}">
@@ -67,6 +71,25 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.phone_number_helper') }}</span>
             </div>
+
+
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('approved') ? 'is-invalid' : '' }}">
+                    <input class="form-check-input" type="checkbox" name="accept_notifications" id="accept_notifications" value="1"
+                        {{ old('accept_notifications', 0) == 1 || old('accept_notifications') === null ? 'checked' : '' }}>
+                    <label class="required form-check-label"
+                           for="accept_notifications">{{ trans('cruds.user.fields.accept_notifications') }}</label>
+                </div>
+                @if($errors->has('accept_notifications'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('accept_notifications') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.accept_notifications_helper') }}</span>
+            </div>
+
+
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

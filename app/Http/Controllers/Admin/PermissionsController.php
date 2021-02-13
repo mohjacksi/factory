@@ -44,7 +44,7 @@ class PermissionsController extends Controller
                 return $row->id ? $row->id : "";
             });
             $table->editColumn('title', function ($row) {
-                return $row->title ? $row->title : "";
+                return $row->title ? trans('permissions.'.$row->title) : "";
             });
 
             $table->rawColumns(['actions', 'placeholder']);
@@ -94,14 +94,14 @@ class PermissionsController extends Controller
     {
         //abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $permission->delete();
+        $permission->forcedelete();
 
         return back();
     }
 
     public function massDestroy(MassDestroyPermissionRequest $request)
     {
-        Permission::whereIn('id', request('ids'))->delete();
+        Permission::whereIn('id', request('ids'))->forcedelete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

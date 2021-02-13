@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyNotificationRequest;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
+use App\Models\City;
 use App\Models\Notification;
 use Gate;
 use Illuminate\Http\Request;
@@ -25,14 +26,18 @@ class NotificationsController extends Controller
     public function create()
     {
         //abort_if(Gate::denies('notification_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $cities = City::all();
 
-        return view('admin.notifications.create');
+        return view('admin.notifications.create', compact('cities'));
     }
 
     public function store(StoreNotificationRequest $request)
     {
-        $notification = Notification::create($request->all());
-
+        foreach ($request->city_id as $city_id) {
+            Notification::create(
+                array_merge($request->except('city_id'), ['city_id' => $city_id])
+            );
+        }
         return redirect()->route('admin.notifications.index');
     }
 

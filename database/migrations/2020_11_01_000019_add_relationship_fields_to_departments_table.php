@@ -8,11 +8,20 @@ class AddRelationshipFieldsToDepartmentsTable extends Migration
 {
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::table('departments', function (Blueprint $table) {
-            $table->unsignedInteger('city_id');
-            $table->foreign('city_id', 'city_fk_2472362')->references('id')->on('cities');
-            $table->unsignedInteger('category_id')->nullable();
-            $table->foreign('category_id', 'category_fk_2472418')->references('id')->on('categories');
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')
+                ->references('id')->on('cities')
+                ->cascadeOnDelete();
+            $table->unsignedBigInteger('trader_id');
+            $table->foreign('trader_id')
+                ->references('id')->on('traders')
+                ->cascadeOnDelete();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();;
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -194,14 +194,14 @@ class JobOfferController extends Controller
     {
         //abort_if(Gate::denies('job_offer_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $jobOffer->delete();
+        $jobOffer->forcedelete();
 
         return back();
     }
 
     public function massDestroy(MassDestroyJobOfferRequest $request)
     {
-        JobOffer::whereIn('id', request('ids'))->delete();
+        JobOffer::whereIn('id', request('ids'))->forcedelete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

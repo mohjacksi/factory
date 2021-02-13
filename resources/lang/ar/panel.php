@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'اعلانات',
+    'site_title' => 'يلا خدمة',
 ];

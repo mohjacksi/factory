@@ -20,6 +20,9 @@ class StoreAdvertisementRequest extends FormRequest
             'images.*' => [
                 'required',
             ],
+            'city_id' => [
+                'exists:cities,id',
+            ],
         ];
     }
 }

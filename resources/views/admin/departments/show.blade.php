@@ -33,12 +33,20 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.department.fields.item_number') }}
+                        </th>
+                        <td>
+                            {{ $department->item_number }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.department.fields.logo') }}
                         </th>
                         <td>
                             @if($department->logo)
                                 <a href="{{ $department->logo->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $department->logo->getUrl('thumb') }}">
+                                    <img src="{{ $department->logo->getUrl('preview') }}">
                                 </a>
                             @endif
                         </td>
@@ -81,6 +89,23 @@
                         </th>
                         <td>
                             {{ $offer->trader->name ?? '' }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            {{ trans('cruds.department.fields.show_in_main_page') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $department->show_in_main_page ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.department.fields.show_in_main_departments_page') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $department->show_in_main_departments_page ? 'checked' : '' }}>
                         </td>
                     </tr>
                 </tbody>
