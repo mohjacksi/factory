@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add appends in variants">
       <change beforePath="$PROJECT_DIR$/resources/views/admin/variants/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/variants/show.blade.php" afterDir="false" />
 =======
@@ -21,6 +22,10 @@
 >>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
 =======
 >>>>>>> 31664197083a46cd7f0bf38525867653c28bbb83
+=======
+    <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add edit in news Controllers">
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/components/trader_city_form_scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/components/trader_city_form_scripts.blade.php" afterDir="false" />
+>>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +279,11 @@
 =======
       <workItem from="1613235904962" duration="385000" />
       <workItem from="1613236549527" duration="618000" />
+<<<<<<< HEAD
 >>>>>>> 31664197083a46cd7f0bf38525867653c28bbb83
+=======
+      <workItem from="1613238327576" duration="305000" />
+>>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
     </task>
     <task id="LOCAL-00001" summary="add color in variants">
       <created>1611853889154</created>
@@ -363,8 +372,19 @@
       <option name="project" value="LOCAL" />
       <updated>1613154332812</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="13" />
 >>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
+=======
+    <task id="LOCAL-00013" summary="add edit in news Controllers">
+      <created>1613238349368</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1613238349368</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+>>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +418,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="add appends in variants" />
 =======
     <MESSAGE value="add prreview" />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="add prreview" />
 >>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
+=======
+    <MESSAGE value="add edit in news Controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="add edit in news Controllers" />
+>>>>>>> 41a98e44805e209fa5018837eaaf9dc16664397c
   </component>
 </project>
