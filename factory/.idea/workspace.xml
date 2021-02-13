@@ -4,10 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add appends in variants">
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/variants/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/variants/show.blade.php" afterDir="false" />
-=======
     <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add prreview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/Admin/DepartmentsApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/Admin/DepartmentsApiController.php" afterDir="false" />
@@ -17,7 +13,6 @@
       <change beforePath="$PROJECT_DIR$/resources/views/admin/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
->>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,12 +256,8 @@
       <workItem from="1613129276149" duration="18000" />
       <workItem from="1613129329846" duration="3137000" />
       <workItem from="1613132494066" duration="2542000" />
-<<<<<<< HEAD
-      <workItem from="1613135061798" duration="17904000" />
-=======
       <workItem from="1613135061798" duration="18902000" />
       <workItem from="1613232656318" duration="1892000" />
->>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
     </task>
     <task id="LOCAL-00001" summary="add color in variants">
       <created>1611853889154</created>
@@ -345,9 +336,6 @@
       <option name="project" value="LOCAL" />
       <updated>1613154121515</updated>
     </task>
-<<<<<<< HEAD
-    <option name="localTasksCounter" value="12" />
-=======
     <task id="LOCAL-00012" summary="add prreview">
       <created>1613154332812</created>
       <option name="number" value="00012" />
@@ -356,7 +344,6 @@
       <updated>1613154332812</updated>
     </task>
     <option name="localTasksCounter" value="13" />
->>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,11 +373,7 @@
     <MESSAGE value="add search with names and ids in productsApi" />
     <MESSAGE value="add public in api" />
     <MESSAGE value="add appends in variants" />
-<<<<<<< HEAD
-    <option name="LAST_COMMIT_MESSAGE" value="add appends in variants" />
-=======
     <MESSAGE value="add prreview" />
     <option name="LAST_COMMIT_MESSAGE" value="add prreview" />
->>>>>>> 7c87bd1da4965bf0aa2db900abdc3ccfa89aff67
   </component>
 </project>
