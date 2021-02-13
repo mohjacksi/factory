@@ -62,8 +62,8 @@ class NewsController extends Controller
 
             $table->editColumn('actions', function ($row) {
                 $parameters = [
-                    $row->news_category->name,
-                    $row->news_sub_category->name,
+                    $row->news_category? $row->news_category->name : '',
+                    $row->news_sub_category ? $row->news_sub_category->name : '',
                 ];
 
                 $viewGate = $this->repo->get_gate($parameters, 'news', '_show');

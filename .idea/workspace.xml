@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="862eeac1-1bb8-4038-9795-fc00c8529ea5" name="Default Changelist" comment="add prreview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/Admin/DepartmentsApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/Admin/DepartmentsApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/Admin/VariantsApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/Admin/VariantsApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateDepartmentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateDepartmentRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Variant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Variant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,6 +251,8 @@
       <workItem from="1613132494066" duration="2542000" />
       <workItem from="1613135061798" duration="18902000" />
       <workItem from="1613232656318" duration="1892000" />
+      <workItem from="1613235904962" duration="385000" />
+      <workItem from="1613236549527" duration="618000" />
     </task>
     <task id="LOCAL-00001" summary="add color in variants">
       <created>1611853889154</created>
