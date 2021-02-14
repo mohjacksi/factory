@@ -39,7 +39,6 @@ class AuthApiController extends Controller
      */
     public function login(LoginApiRequest $request)
     {
-        dd('ss');
         $user = User::where('phone_number', $request->phone_number)->whereNull('deleted_at')->first();
 
         if ($user) {
