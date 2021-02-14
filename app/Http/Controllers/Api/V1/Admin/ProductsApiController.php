@@ -48,6 +48,8 @@ class ProductsApiController extends Controller
 
         $details = $request['details'];
 
+            $name = $request['name'];
+
         $city_id = $request['city_id'];
 
         $higher_price = $request['HigherPrice'];
@@ -187,6 +189,12 @@ class ProductsApiController extends Controller
         if (isset($details)) {
             $productQuery = $productQuery->where('details', 'like', "%$details%");
         }
+    
+
+        if (isset($name)) {
+            $productQuery = $productQuery->where('name', 'like', "%$name%");
+        }
+    
         if (isset($sub_product_service_type_id)) {
             $productQuery = $productQuery->where('sub_product_service_type_id', $sub_product_service_type_id);
         }
