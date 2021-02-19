@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
 use App\Http\Resources\Admin\NotificationResource;
+use App\Models\Department;
+use App\Models\Job;
+use App\Models\News;
 use App\Models\Notification;
+use App\Models\Offer;
+use App\Models\Product;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,5 +72,35 @@ class NotificationsApiController extends Controller
         $notification->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+
+    public function GetRecordsBasedOnElement($name): \Illuminate\Http\JsonResponse
+    {
+        $model = $this->getModelBasedOnId($name);
+
+        $result =  $model->select('id', 'name')->get();
+
+        return \response()->json([
+            $result,
+        ]);
+    }
+
+    public function getModelBasedOnId($name)
+    {
+        $model = '';
+        if ($name == 'Offer') {
+            $model = new Offer;
+        } elseif ($name == 'Department') {
+            $model = new Department;
+        } elseif ($name == 'Product') {
+            $model = new Product;
+        } elseif ($name == 'News') {
+            $model = new News;
+        } elseif ($name == 'Job') {
+            $model = new Job;
+        }
+
+        return $model;
     }
 }

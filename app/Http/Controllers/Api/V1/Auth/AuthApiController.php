@@ -27,8 +27,12 @@ class AuthApiController extends Controller
         $user = User::firstOrCreate([
             'phone_number' => $request->phone_number,
             'name' => $request->name,
+            'city_id' => $request->city_id,
         ]);
-// create firebase token
+
+
+
+        // create firebase token
         if ($request->firebase_token) {
             $this->checkFirebaseToken($user->id, $request->firebase_token);
         }
@@ -52,8 +56,7 @@ class AuthApiController extends Controller
         if ($user) {
             $token = $user->createToken($user->phone_number . '-' . now());
             Auth::login($user);
-//            dd(Auth::user()->id);
-//            $token = Auth::user()->AauthAcessToken()->first();
+
 
             // create firebase token
             if ($request->firebase_token) {

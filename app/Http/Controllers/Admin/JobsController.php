@@ -85,7 +85,7 @@ class JobsController extends Controller
             return $table->make(true);
         }
 
-        $cities          = City::get();
+        $cities  = City::get();
         $specializations = Specialization::get();
 
         return view('admin.jobs.index', compact('cities', 'specializations'));

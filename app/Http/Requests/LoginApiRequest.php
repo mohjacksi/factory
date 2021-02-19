@@ -24,7 +24,8 @@ class LoginApiRequest extends FormRequest
                 Rule::exists('users')->where(function ($query) {
                     return $query->whereNull('deleted_at');
                 }),
-            ]
+            ],
+            'city_id' => 'required|exists:cities,id'
         ];
     }
 }

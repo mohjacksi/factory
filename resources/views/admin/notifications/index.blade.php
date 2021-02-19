@@ -37,11 +37,17 @@
                         <th>
                             {{ trans('cruds.notification.fields.city_id') }}
                         </th>
+                        <th>
+                            {{ trans('cruds.notification.fields.model_id') }}
+                        </th>
                     </tr>
                     <tr>
                         <td>
                         </td>
                         <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -101,8 +107,13 @@
                                 {{ $notification->content ?? '' }}
                             </td>
                             <td>
+{{--                                {{ $notification->city ? $notification->city->name: '' }}--}}
                                 {{ $notification->city ? $notification->city->name: '' }}
                             </td>
+                            <td>
+                                {{ $notification->model_type ?? '' }}
+                            </td>
+
 
                         </tr>
                     @endforeach
@@ -157,6 +168,7 @@
                 orderCellsTop: true,
                 order: [[1, 'desc']],
                 pageLength: 50,
+
             });
             let table = $('.datatable-Notification:not(.ajaxTable)').DataTable({buttons: dtButtons})
             $('a[data-toggle="tab"]').on('shown.bs.tab click', function (e) {

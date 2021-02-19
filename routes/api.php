@@ -65,6 +65,9 @@ Route::group(
         Route::get('get_main_product_type_ajax/{id}', 'SubProductTypesApiController@getMainProductTypeAjax');
 
 
+
+
+
         //تصنيف خدمات منتجات فرعي
         Route::apiResource('sub_product_service_types', 'SubProductServiceTypesApiController');
         Route::get('get_main_product_service_type_ajax/{id}', 'SubProductServiceTypesApiController@SubProductServiceTypeAjax');
@@ -98,6 +101,7 @@ Route::group(
 
         // Notifications
         Route::apiResource('notifications', 'NotificationsApiController');
+        Route::get('get_records_based_on_element/{name?}', 'NotificationsApiController@GetRecordsBasedOnElement');
 
         // Job Offers
         Route::post('job-offers/media', 'JobOfferApiController@storeMedia')->name('job-offers.storeMedia');
@@ -114,6 +118,20 @@ Route::group(
         // Variants
         Route::post('variants/media', 'VariantsApiController@storeMedia')->name('variants.storeMedia');
         Route::apiResource('products.variants', 'VariantsApiController');
+
+
+
+        Route::group([
+            'prefix' => 'notification',
+            'middleware' => ['auth:api']
+        ], function () {
+            Route::get('get', 'AppNotificationsApiController@get');
+            Route::get('all', 'AppNotificationsApiController@getAll');
+            Route::get('mark_as_read', 'AppNotificationsApiController@markAsRead');
+            Route::get('total_unread_notifications_count', 'AppNotificationsApiController@totalUnreadNotificationsCount');
+            Route::get('get_total_unread_notifications', 'AppNotificationsApiController@getTotalUnreadNotifications');
+
+        });
 
 
         Route::group([

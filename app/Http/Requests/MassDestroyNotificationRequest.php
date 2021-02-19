@@ -20,7 +20,7 @@ class MassDestroyNotificationRequest extends FormRequest
     {
         return [
             'ids'   => 'required|array',
-            'ids.*' => 'exists:notifications,id',
+            'ids.*' => 'exists:custom_notifications,id',
         ];
     }
 }

@@ -22,7 +22,7 @@ trait FirebaseFCM
             'notification' => [
                 'title' => 'Car Viseta',
                 'body' => $textMessage,
-                'order_id' => $order_id
+//                'order_id' => $order_id
             ],
             'data' => $data, // optional
 
@@ -69,6 +69,21 @@ trait FirebaseFCM
             'token' => $token,
             'user_id' => $userId
         ]);
+
+    }
+
+    protected function sendNotificationsFCM($users, $data)
+    {
+        $tokens = [];
+
+        foreach ($users as $user) {
+            if ($user->firebaseToken) {
+                $tokens[] = $user->firebaseToken->token;
+            }
+        }
+        if (count($tokens) > 0) {
+            $this->sendNotificationToDevices($data['msg'], $data, array_values($tokens));
+        }
 
     }
 

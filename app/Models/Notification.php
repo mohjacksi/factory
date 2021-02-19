@@ -10,7 +10,7 @@ class Notification extends Model
 {
     use SoftDeletes;
 
-    public $table = 'notifications';
+    public $table = 'custom_notifications';
 
     protected $dates = [
         'created_at',
@@ -26,6 +26,8 @@ class Notification extends Model
         'title',
         'content',
         'city_id',
+        'model_type',
+        'model_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -41,6 +43,16 @@ class Notification extends Model
      */
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class,'city_id');
+    }
+
+    public function getModelAttribute()
+    {
+        $className = 'App\\Models\\'.$this->model_type;
+
+        $model =  new $className;
+
+        return $model->findOrFail($this->model_id)->name;
+
     }
 }

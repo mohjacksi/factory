@@ -29,6 +29,7 @@ class RegisterApiRequest extends FormRequest
                 'required',
                 'unique:users,name'
             ],
+            'city_id' => 'required|exists:cities,id'
         ];
     }
 }
