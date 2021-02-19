@@ -49,6 +49,12 @@
                         <th>
                             {{ trans('cruds.order.fields.phone_number') }}
                         </th>
+                        <th>
+                            {{ trans('cruds.order.fields.created_at') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.order.fields.updated_at') }}
+                        </th>
 
                     </tr>
                     <tr>
@@ -74,6 +80,13 @@
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
@@ -139,6 +152,13 @@
                             </td>
                             <td>
                                 {{ $order->phone_number ?? '' }}
+                            </td>
+
+                            <td>
+                                {{ $order->created_at ?? '' }}
+                            </td>
+                            <td>
+                                {{ $order->updated_at ?? '' }}
                             </td>
 
 

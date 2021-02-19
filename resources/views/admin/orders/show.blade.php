@@ -30,6 +30,22 @@
                         </tr>
                         <tr>
                             <th>
+                                {{ trans('cruds.order.fields.created_at') }}
+                            </th>
+                            <td>
+                                {{ $order->created_at }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.order.fields.updated_at') }}
+                            </th>
+                            <td>
+                                {{ $order->updated_at }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
                                 {{ trans('cruds.order.fields.user') }}
                             </th>
                             <td>
