@@ -38,6 +38,7 @@
                             {{ trans('cruds.order.fields.subtotal') }}
                         </th>
                         <th>
+
                             {{ trans('cruds.order.fields.discount') }}
                         </th>
                         <th>
