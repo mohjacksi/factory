@@ -301,7 +301,9 @@ class OffersController extends Controller
     public function uploadExcel(Request $request, $id = null)
     {
         $user = Auth::user();
-
+        if (!$request->file('excel_file')) {
+            return redirect()->back()->withErrors(['error' => 'يُرجى اختيار ملف أولا']);
+        }
         if (in_array(1, $user->roles()->pluck('role_id')->toArray())) {
 
             list($offerExcel, $offerExcelMedia, $file) = UploadExcel::prepareFileForExcelUpload($id, $request, new OfferExcel);
