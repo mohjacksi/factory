@@ -59,6 +59,9 @@ class GateRepository
             if (in_array($imploded_parameter . $suffix, $permissions)) {
                 return $type . $suffix;
             }
+            if (in_array($type . $suffix, $permissions)) {
+                return $type . $suffix;
+            }
         }
         return '';
     }

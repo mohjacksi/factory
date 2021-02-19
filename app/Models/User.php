@@ -3,6 +3,7 @@
 namespace App\Models;
 
 //use App\Notifications\VerifyUserNotification;
+use App\Models\Firebase\FirebaseTokenModel;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -104,4 +105,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('\App\OauthAccessToken');
     }
+
+
+    public function firebaseToken()
+    {
+        return $this->hasOne(FirebaseTokenModel::class , 'user_id');
+    }
+
 }

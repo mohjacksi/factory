@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "egyptian-ads-app",
+  "private_key_id": "c349561fdaa462631901fd2a4acfec57d056394a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCim+VTaCLIo7QI\nnwAqTwurXTB5LDQD3sEexfROoYS1WbOHsHaJQy1y4Q4UNjRJa3ZTv1Zc5dzDtNde\nxHYL32C1T+aGCnI+RaB4HaACnQKCLgKc2hiyGJ8xYk5CdMLlfELoktd3/1c8EQU8\n5V/ZaDuxz0PbSa6wZ+3rKL8wgxDDwRlzeRhaPPefoC8B8ghn+zXaQnHM8f2d04bv\nFqlq30Tri9/hIMjXZ9ZoyyNmj8dalawkzU6gCQFakeJUST4LvzIX+1TdfWUxbxvT\nzTVflS22X3hf4hIm37YmD1PXx5lrHqNmAhSO2G7Epm7qjiUzwmZzXmD6y6dISWvK\njyshUXSjAgMBAAECggEAHzQLLZYuFpJTWdQpE/VXJ+saAiaZVKTKKj2SRAR6ktJD\nwSX7mRtq/UByky5TmkMk0a1FxU3WrzdknKrWfDDBPgm3EsGuaoSx5lrI+bdnY9Ow\nbKjtVD+lTLSwj9AYFjFiJX8IGd7FvqEFgEoDupRl4BkFzG63NuK6pQWMqqJ79RQq\nIT+0PmyASXDvlbYhBSbAdd7EMqT9mCs7qPXj7SxBmXTEeBLWYV2CzmBgJK+1OlaC\nHuWOz2rGPpr3pO7YvOjaPLoPaYD4DE1H2OtHduMbciDqLWZiRkNBc21n7cvilBQV\negQfe6jCDyY/acwuNhBdC5iSxgRh7saQsRGJJU+5AQKBgQDkU0d9vfFuS0gcW8Vw\ndoHzJolBocwjriMEb9x2/N/HoBxpw0pobEr4qjSQVP+HOM5ba238uMjJHxDmn+IB\nwzmBJoVHNFjeIOVo+eMSoeFRGNNHdQEhSBH1i71Lg6zl6qVUZLbcEpwRJic6nC7f\nkJk69C4Nb9WRZk2qXm3tjn/k/QKBgQC2UX/8W8qV6Sn3J6+2p7UTN/klZEiyQjzO\n83h4ESt74CaMALOO6G2OCCGtrEYdZz1KbQCWhlKrVtaD2WahqYxiqWTer/mA7o5/\n6nYtxU3eyeq4HgCKV9n40BWMAkapu0o2ncKPIDiA9Z2GDkyLSpl5GHqee4H5e4ps\nQmUalZHCHwKBgQDgIlhVuTXdfY0mOXhR9COQ20113iyVAgZh/qU/MPFD94qs0Aal\nB1l5TSwYWzgUN9FqsMThh0ujExn2KxEjhc9XVscSpPJv638IU/VyfvK+N06AIP2g\n/CyVDD4gePwrHvJ5K/zNgH8v3nI3+MWStVGWK8lha10NRI4NJnFm97HYyQKBgAoI\nFfi2vEDfYXW980cjly0FiWnrSKy2RE5GyzwgBbp9LOHLMBYO5+hGvkOmFP2NLqwn\nrz6ZCXdwAcGjdqgyggzzsR8no5zag3C6X+JI1u4JQib7T6BNEStFl8nqXiT8ryqu\nJ4Rki3ddDFvR8ZhAdI1bMXQC67XkfEtUo+eAj1KVAoGADbOGbpI2J6jOySwpmC2l\naN49PVU2sEkK4Wmu3k8k3W4WtHzQh+6SZupdvDeOqHuARyGfUgyGarsugGqSQnGH\nTWZ1nAjsJdY3HNobvkPMQ314IoISRwkcxNYaG/rrML/RsbRZlEE9hVkH5XyXvLsx\nQGoX9zIgDR0aXxUZRkV6a9I=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-2imnk@egyptian-ads-app.iam.gserviceaccount.com",
+  "client_id": "106489064401979536454",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2imnk%40egyptian-ads-app.iam.gserviceaccount.com"
+}

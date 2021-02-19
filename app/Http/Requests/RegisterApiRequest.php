@@ -27,9 +27,7 @@ class RegisterApiRequest extends FormRequest
             ],
             'name' => [
                 'required',
-                Rule::unique('users')->where(function ($query) {
-                    return $query->whereNull('deleted_at');
-                }),
+                'unique:users,name'
             ],
         ];
     }

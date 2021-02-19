@@ -139,3 +139,15 @@ Route::group(
         // + other routes in the same namespace
     }
 );
+Route::group(
+    [
+        'prefix' => 'v1',
+        'as' => 'api.',
+        'namespace' => 'Api\V1\Auth',
+        'middleware' => 'auth:api',
+    ],
+    function () {
+        //Auth API
+        Route::post('logout', 'AuthApiController@logout');
+    }
+);
