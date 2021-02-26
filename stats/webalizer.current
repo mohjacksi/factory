@@ -98,7 +98,7 @@
 0
 0
 0
-# -urls- 
+# -urls-
 /_ignition/execute-solution
 0 2 7308895189880417635 0 0 0
 /public/storage/113/601872a57c030_Lighthouse.jpg
@@ -167,7 +167,7 @@
 0 6747 120325172786291 37281632 140 89
 /api/v1/news_sub_categories
 0 42 7310034214939995699 54136 0 0
-/public/api/v1/get_categories_ajax/2
+/api/v1/get_categories_ajax/2
 0 64 3543825139368867381 11328 0 0
 /admin/categories
 0 98 96 4062490 1 0
@@ -185,7 +185,7 @@
 0 10 0 242110 0 0
 /public/storage/287/conversions/602d18072d9ff_82299333_777964632686225_610098901805957120_n-thumb.jpg
 1 3 0 4848 0 0
-/public/api/v1/get_categories_ajax/7
+/api/v1/get_categories_ajax/7
 0 1 0 4 0 0
 /admin/news/media
 0 9 0 862 0 0
@@ -219,7 +219,7 @@
 1 6 0 320166 0 0
 /admin/products/35/variants/35/edit
 0 1 27130880 110413 0 0
-/public/api/v1/get_traders_of_city/3
+/api/v1/get_traders_of_city/3
 0 37 0 1360007 1 0
 /admin/products/27/variants
 0 4 0 219944 0 0
@@ -263,7 +263,7 @@
 1 1 0 3435 0 0
 /public/storage/240/conversions/6028bbdb2c6d3_download-preview.jpg
 1 3 0 15240 0 0
-/public/api/v1/get_main_product_type_ajax/2
+/api/v1/get_main_product_type_ajax/2
 0 7 0 28 0 0
 /public/storage/264/conversions/60292f1830eb7_133682612_3526681777400517_2619460044012504589_n-thumb.jpg
 1 5 0 7932 0 0
@@ -303,7 +303,7 @@
 0 2 0 2248 0 0
 /admin/users/9/edit
 0 2 0 207700 0 0
-/public/api/v1/get_main_product_service_type_ajax/3
+/api/v1/get_main_product_service_type_ajax/3
 0 10 0 1130 0 0
 /public/storage/133/conversions/601a9d21bf9b1_Lighthouse-thumb.jpg
 1 3 0 6015 0 0
@@ -323,7 +323,7 @@
 0 2 0 108505 0 0
 /admin/departments/media
 0 22 0 2338 1 0
-/public/api/v1/get_categories_ajax/19
+/api/v1/get_categories_ajax/19
 0 3 0 12 0 0
 /public/storage/230/conversions/6027fea35bfb6_Audio-listen-process-(1)-thumb.jpg
 1 2 0 1955 0 0
@@ -375,7 +375,7 @@
 0 1 0 110730 0 0
 /public/storage/250/conversions/60292a052d3c4_WhatsApp-Image-2021-01-09-at-10.51.16-PM-thumb.jpg
 1 10 0 29304 0 0
-/public/api/v1/get_categories_ajax/6
+/api/v1/get_categories_ajax/6
 0 10 0 1110 0 0
 /public/storage/148/conversions/601bd9ac6584c_index1-thumb.jpg
 1 17 0 29692 0 0
@@ -397,7 +397,7 @@
 0 72 0 3939404 2 2
 /admin/users/7/edit
 0 4 0 415078 0 0
-/public/api/v1/get_main_product_type_ajax/3
+/api/v1/get_main_product_type_ajax/3
 0 20 0 1040 1 0
 /public/storage/247/60291f9964597_index2.jpg
 1 6 0 963870 0 0
@@ -421,11 +421,11 @@
 1 14 0 9224 0 0
 /api/v1/get_main_product_service_type_ajax/3
 0 11 0 1243 0 0
-/public/api/v1/get_departments_of_trader/12
+/api/v1/get_departments_of_trader/12
 0 4 0 7304 0 0
 /public/storage/126/conversions/60194009ae42e_WhatsApp-Image-2021-01-09-at-10.51.21-PM-preview.jpg
 1 1 0 13210 0 0
-/public/api/v1/get_categories_ajax/14
+/api/v1/get_categories_ajax/14
 0 2 0 67 0 0
 /admin/products/4/variants/create
 0 1 0 113816 0 0
@@ -441,7 +441,7 @@
 0 1 0 104723 0 0
 /admin/sub_categories
 0 101 0 3695141 0 0
-/public/api/v1/get_categories_ajax/1
+/api/v1/get_categories_ajax/1
 0 7 0 887 0 0
 /public/storage/177/conversions/601eb49d5ca07_FB_IMG_1612047282069-thumb.jpg
 1 8 0 9084 0 0
@@ -475,7 +475,7 @@
 1 1 0 13210 0 0
 /admin/products/33/edit
 0 5 0 744921 0 0
-/public/api/v1/get_main_product_service_type_ajax/1
+/api/v1/get_main_product_service_type_ajax/1
 0 24 0 3336 0 0
 /public/storage/268/602a52a2efc1a_index55.jpg
 1 11 0 298617 0 0
@@ -493,7 +493,7 @@
 0 3 0 14715 0 0
 /public/storage/188/conversions/6020c78ac4547_Audio-listen-process-(1)-thumb.jpg
 1 4 0 1955 0 0
-/public/api/v1/get_main_product_type_ajax/6
+/api/v1/get_main_product_type_ajax/6
 0 1 0 492 0 0
 /public/storage/262/conversions/60292f0c65076_index3-thumb.jpg
 1 5 0 8238 0 0
@@ -633,7 +633,7 @@
 1 1 0 8964 0 0
 /public/storage/233/conversions/60280ede70155_424288_379301208764501_1719633159_n-thumb.jpg
 1 16 0 12570 0 0
-/public/api/v1/get_departments_of_trader/11
+/api/v1/get_departments_of_trader/11
 0 1 0 1764 0 0
 /public/storage/154/601bdf13d19b4_95076918_1334965606706288_7464331705106526746_n.jpg
 1 11 8026309745423035700 268609 0 0
@@ -651,7 +651,7 @@
 0 42 3616444572075519848 504042 0 1
 /public/storage/270/conversions/602a52e9890b0_fd6caddc7ffb51596dcec1a46f3f4a05-preview.jpg
 1 1 0 7547 0 0
-/public/api/v1/get_departments_of_trader/7
+/api/v1/get_departments_of_trader/7
 0 1 0 1353 0 0
 /public/storage/102/conversions/601348d65f189_4691-7-thumb.jpg
 1 3 0 2725 0 0
@@ -689,7 +689,7 @@
 1 7 0 901229 0 0
 /admin/products/15/variants
 0 14 0 819507 0 0
-/public/api/v1/get_categories_ajax/17
+/api/v1/get_categories_ajax/17
 0 1 0 4 0 0
 /public/storage/150/conversions/601bdcf332b6c_index3-thumb.jpg
 1 4 0 14100 0 0
@@ -709,7 +709,7 @@
 0 2 0 210219 0 0
 /admin/products/32/variants/31/edit
 0 1 0 113348 0 0
-/public/api/v1/get_main_product_type_ajax/1
+/api/v1/get_main_product_type_ajax/1
 0 6 0 276 0 0
 /public/storage/120/6018ec983c311_codeforce2.png
 1 12 0 175752 0 0
@@ -761,7 +761,7 @@
 0 1 0 105726 0 0
 /admin/products/31/variants/26/edit
 0 1 0 112302 0 0
-/public/api/v1/get_traders_of_city/2
+/api/v1/get_traders_of_city/2
 0 1 0 82 0 0
 /public/storage/253/conversions/60292a3adab03_index2-thumb.jpg
 1 9 0 24096 0 0
@@ -861,7 +861,7 @@
 0 16 0 1562488 0 0
 /public/storage/116/conversions/6018e2fb5922f_Audio-listen-process-(1)-thumb.jpg
 1 15 0 11730 0 0
-/public/api/v1/get_news_sub_categories_ajax/2
+/api/v1/get_news_sub_categories_ajax/2
 0 2 0 96 0 0
 /public/storage/121/6019367de2aa6_index.jpg
 1 5 0 974530 0 0
@@ -877,7 +877,7 @@
 0 22 0 1060778 1 0
 /public/storage/158/conversions/601c353b4da37_Audio-listen-process--thumb.jpg
 1 6 0 3910 0 0
-/public/api/v1/get_categories_ajax/9
+/api/v1/get_categories_ajax/9
 0 1 0 4 0 0
 /public/storage/118/conversions/6018e41a4c020_placeholder-thumb.jpg
 1 9 0 14172 0 0
@@ -899,7 +899,7 @@
 0 1 0 109737 0 0
 /public/storage/189/conversions/6021353386f06_indexالعرض-preview.jpg
 1 1 0 7007 0 0
-/public/api/v1/get_main_product_service_type_ajax/2
+/api/v1/get_main_product_service_type_ajax/2
 0 9 0 909 0 0
 /admin/products/4/variants
 0 17 0 898508 0 0
@@ -921,7 +921,7 @@
 0 80 0 4228237 0 0
 /public/storage/245/conversions/60291f93ab895_index4-preview.jpg
 1 1 0 10006 0 0
-/public/api/v1/get_departments_of_trader/9
+/api/v1/get_departments_of_trader/9
 0 15 0 26370 1 0
 /admin/products/27
 0 1 0 111553 0 0
@@ -945,23 +945,23 @@
 0 239 0 103873 0 2
 /api/v1/traders/20
 0 60 0 655860 0 0
-/public/api/v1/get_categories_ajax/5
+/api/v1/get_categories_ajax/5
 0 19 0 1995 0 0
 /public/storage/273/conversions/602cf71ac880d_inde2x-preview.jpg
 1 3 0 21276 0 0
 /public/_debugbar/assets/javascript
 0 7 0 2562749 0 1
-/public/api/v1/get_news_sub_categories_ajax/3
+/api/v1/get_news_sub_categories_ajax/3
 0 1 8503077571452207104 151 0 0
 /admin/offers
 0 105 72057594037927936 12365855 2 0
 /api/v1/traders/9
 0 420 24616 3992336 5 1
-/public/api/v1/get_departments_of_trader/22
+/api/v1/get_departments_of_trader/22
 0 8 3328216410948516142 7272 0 0
 /admin/news_sub_categories/create
 0 26 0 2511884 0 1
-/public/api/v1/get_main_product_type_ajax/4
+/api/v1/get_main_product_type_ajax/4
 0 5 26925776 320 0 0
 /public/storage/260/conversions/60292e9530d50_4index-thumb.jpg
 1 6 0 12540 0 0
@@ -1027,7 +1027,7 @@
 1 5 0 16224 0 0
 /api/v1/categories
 0 418 0 806310 1 1
-/public/api/v1/get_news_sub_categories_ajax/11
+/api/v1/get_news_sub_categories_ajax/11
 0 1 0 4 0 0
 /public/storage/268/conversions/602a52a2efc1a_index55-thumb.jpg
 1 13 0 22603 0 0
@@ -1057,7 +1057,7 @@
 0 2 0 207929 0 0
 /public/storage/117/conversions/6018e37c71311_Audio-listen-process--thumb.jpg
 1 12 0 11730 0 0
-/public/api/v1/get_departments_of_trader
+/api/v1/get_departments_of_trader
 0 6 0 151781 0 0
 /public/storage/103/conversions/60134c1ea8e06_FB_IMG_1593471645871-thumb.jpg
 1 3 0 3081 0 0
@@ -1125,7 +1125,7 @@
 0 3 27124896 343861 0 0
 /public/storage/145/conversions/601aed239746c_4691-7-thumb.jpg
 1 1 0 2725 0 0
-/public/api/v1/get_traders_of_city
+/api/v1/get_traders_of_city
 0 37 0 1145628 2 0
 /public/storage/121/conversions/6019367de2aa6_index-thumb.jpg
 1 4 0 9246 0 0
@@ -1143,7 +1143,7 @@
 1 2 0 1955 0 0
 /api/v1/get_main_product_type_ajax/1
 0 9 0 414 0 0
-/public/api/v1/get_categories_ajax/10
+/api/v1/get_categories_ajax/10
 0 15 0 3661 0 0
 /public/storage/159/601c3db6de745_61858392_2334028870251078_3722758617154191360_o.jpg
 1 9 0 2743857 0 0
@@ -1171,7 +1171,7 @@
 0 2 0 198939 0 0
 /admin/traders/3/edit
 0 1 0 109512 0 0
-/public/api/v1/get_news_sub_categories_ajax/9
+/api/v1/get_news_sub_categories_ajax/9
 0 3 0 471 0 0
 /_debugbar/assets/stylesheets
 0 85 0 20566515 5 3
@@ -1197,9 +1197,9 @@
 1 27 0 59022 0 0
 /admin/mainpageimages/media
 0 12 0 1024 0 0
-/public/api/v1/get_main_product_service_type_ajax/4
+/api/v1/get_main_product_service_type_ajax/4
 0 8 0 568 0 0
-/public/api/v1/get_news_sub_categories_ajax/1
+/api/v1/get_news_sub_categories_ajax/1
 0 4 0 488 0 0
 /public/storage/244/conversions/60291f918be98_index.1jpg-preview.jpg
 1 1 0 10070 0 0
@@ -1233,7 +1233,7 @@
 0 54 407019091370313211 312606 0 1
 /public/storage/290/conversions/602d7ddd58028_000_Image_1-preview.jpg
 1 2 0 12158 0 0
-/public/api/v1/get_main_product_type_ajax/5
+/api/v1/get_main_product_type_ajax/5
 0 3 0 12 0 0
 /public/storage/154/conversions/601bdf13d19b4_95076918_1334965606706288_7464331705106526746_n-thumb.jpg
 1 13 0 14090 0 0
@@ -1253,7 +1253,7 @@
 0 6 7885630523722130021 685510 1 0
 /admin/products/14/variants
 0 9 3329057541621954093 340525 0 0
-/public/api/v1/get_departments_of_trader/10
+/api/v1/get_departments_of_trader/10
 0 7 470020206195 44912 0 0
 /admin/roles/4/edit
 0 2 8459218259587247413 319539 0 0
@@ -1393,7 +1393,7 @@
 1 2 0 2088 0 0
 /public/storage/238/6028afb026c97_Audio-listen-process-.png
 1 5 0 171555 0 0
-/public/api/v1/products
+/api/v1/products
 0 1 0 5897 0 0
 /admin/item_advertisements/3/edit
 0 1 0 103940 0 0
@@ -1403,11 +1403,11 @@
 1 10 0 19789 0 0
 /admin/products/34/variants
 0 10 0 596746 0 0
-/public/api/v1/get_categories_ajax/3
+/api/v1/get_categories_ajax/3
 0 52 0 13552 0 0
 /admin/departments/37/edit
 0 1 0 131251 0 0
-/public/api/v1/products/31/variants
+/api/v1/products/31/variants
 0 8 0 88 0 0
 /public/storage/282/conversions/602d17eda927f_73474987_726876257795063_2541138282809393152_n-thumb.jpg
 1 3 0 2902 0 0
@@ -1419,7 +1419,7 @@
 1 1 0 12409 0 0
 /admin/news_categories/6/edit
 0 1 0 96228 0 0
-/public/api/v1/get_categories_ajax/4
+/api/v1/get_categories_ajax/4
 0 1 0 80 0 0
 /public/storage/153/conversions/601bdecd86d65_30656785_2058348491117466_8634591194077170877_n-thumb.jpg
 1 14 0 16650 0 0
@@ -1437,7 +1437,7 @@
 0 2 0 231368 0 0
 /public/storage/172/conversions/601e87c68526f_000_Image_1-thumb.jpg
 1 8 0 7725 0 0
-/public/api/v1/traders
+/api/v1/traders
 0 1 0 9473 0 0
 /admin/products/22/variants
 0 2 0 110767 0 0
@@ -1453,7 +1453,7 @@
 0 5 0 10790 0 0
 /public/storage/245/conversions/60291f93ab895_index4-thumb.jpg
 1 7 0 8421 0 0
-/public/api/v1/get_traders_of_city/1
+/api/v1/get_traders_of_city/1
 0 4 0 5076 0 0
 /public/storage/177/conversions/601eb49d5ca07_FB_IMG_1612047282069-preview.jpg
 1 4 0 35440 0 0
@@ -1483,7 +1483,7 @@
 0 54 0 89316 0 0
 /admin/products/28/variants/20/edit
 0 2 0 218629 0 0
-/public/api/v1/get_categories_ajax/8
+/api/v1/get_categories_ajax/8
 0 12 0 1038 0 0
 /public/storage/165/601c52849d511_138514155_2895063670814259_2712254655467829785_o.png
 1 8 0 1980360 0 0
@@ -2284,7 +2284,7 @@ crawl-66-249-76-252.googlebot.com
 0 289 210 6905598 2 1613694043
 /api/v1/products
 # End Of Table - sites (daily)
-# -referrers- 
+# -referrers-
 https://yallservice.com/admin/products/4/variants/4/edit
 0 16
 https://yallservice.com/admin/traders/11/edit
@@ -2343,7 +2343,7 @@ https://yallservice.com/admin/department_excels
 0 99
 https://yallservice.com/admin/news_categories/7/edit
 0 3
-https://yallservice.com/public/api/v1/products/
+https://yallservice.com/api/v1/products/
 0 1
 https://yallservice.com/admin/products/29/variants/23/edit
 0 3
@@ -2507,7 +2507,7 @@ https://yallservice.com/admin/item_advertisements
 0 110
 https://yallservice.com/admin
 0 269
-https://yallservice.com/public/api/v1/products/10/
+https://yallservice.com/api/v1/products/10/
 0 1
 https://yallservice.com/admin/traders/4/edit
 0 6
@@ -2583,7 +2583,7 @@ https://yallservice.com/admin/item_advertisements/3/edit
 0 2
 https://yallservice.com/admin/orders
 0 49
-https://yallservice.com/public/api/v1/products/11/
+https://yallservice.com/api/v1/products/11/
 0 1
 https://yallservice.com/admin/traders/3/edit
 0 9
@@ -2802,7 +2802,7 @@ https://yallservice.com/api/v1/traders/
 https://yallservice.com/admin/departments/21
 0 1
 # End Of Table - referrers
-# -agents- 
+# -agents-
 Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
 0 2
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.
@@ -2831,7 +2831,7 @@ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like G
 0 2
 Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/88.0.43
 0 2
-Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.143 Mobile 
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.143 Mobile
 0 1
 Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0
 0 1
@@ -2841,7 +2841,7 @@ Embarcadero URI Client/1.0
 0 5
 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
 0 4
-Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.140 Mobile 
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.140 Mobile
 0 8
 Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:85.0) Gecko/20100101 Firefox/85.0
 0 33
@@ -2851,7 +2851,7 @@ Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.
 0 8
 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36
 0 2
-Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.153 Mobile 
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.153 Mobile
 0 10
 Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko
 0 4
@@ -2861,7 +2861,7 @@ Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0
 0 5865
 Mozilla/5.0 (compatible; AhrefsBot/6.1; +http://ahrefs.com/robot/)
 0 4
-Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.114 Mobile 
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.114 Mobile
 0 8
 Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 0 28
@@ -2992,7 +2992,7 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36
 0 18
 # End Of Table - agents
-# -search strings- 
+# -search strings-
 # End Of Table - search strings
-# -usernames- 
+# -usernames-
 # End Of Table - usernames
