@@ -20,7 +20,7 @@ trait FirebaseFCM
         $messaging = app('firebase.messaging');
         $config = [
             'notification' => [
-                'title' => 'Car Viseta',
+                'title' => 'Yalla Service',
                 'body' => $textMessage,
 //                'order_id' => $order_id
             ],
