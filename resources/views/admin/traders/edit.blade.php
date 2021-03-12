@@ -115,6 +115,22 @@
                 <span class="help-block">{{ trans('cruds.trader.fields.city_name_helper') }}</span>
             </div>
 
+            <div class="form-group">
+                <label class="required">{{ trans('cruds.trader.fields.type') }}</label>
+                @foreach(App\Models\Trader::TYPE_RADIO as $key => $label)
+                    <div class="form-check {{ $errors->has('type') ? 'is-invalid' : '' }}">
+                        <input class="form-check-input" type="radio" id="type_{{ $key }}" name="type" value="{{ $key }}" {{ old('type', $trader->type) === (string) $key ? 'checked' : '' }} required>
+                        <label class="form-check-label" for="type_{{ $key }}">{{ $label }}</label>
+                    </div>
+                @endforeach
+                @if($errors->has('type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('type') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.trader.fields.type_helper') }}</span>
+            </div>
+
 
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

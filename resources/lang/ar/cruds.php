@@ -713,6 +713,8 @@ return [
             'id_helper' => ' ',
             'images' => 'صور للمحل',
             'images_helper' => ' ',
+            'type' => 'النوع',
+            'type_helper' => ' ',
             'activeness' => 'النشاط',
             'activeness_helper' => ' ',
             'city_name' => 'المدينة',

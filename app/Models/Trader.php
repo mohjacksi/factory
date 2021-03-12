@@ -17,6 +17,12 @@ class Trader extends Model implements HasMedia
 
     protected $appends = [
         'images',
+        'type_of_trader',
+    ];
+
+    const TYPE_RADIO = [
+        'service'    => 'خدمي',
+        'commercial' => 'تجاري',
     ];
 
     protected $dates = [
@@ -28,6 +34,7 @@ class Trader extends Model implements HasMedia
     protected $fillable = [
         'name',
         'city_id',
+        'type',
         'address',
         'activeness',
         'phone_number',
@@ -70,6 +77,18 @@ class Trader extends Model implements HasMedia
     public function offers()
     {
         return $this->hasMany(Offer::class, 'trader_id', 'id');
+    }
+
+
+    /**
+     * @return
+     */
+    public function getTypeOfTraderAttribute()
+    {
+        $trader = new \ReflectionClass(new Trader);
+//        $constants = array_flip($trader->getConstants());
+        $constants = $trader->getConstants();
+        return $this->trader ? $constants['TYPE_RADIO'][$this->trader->type] : '';
     }
 
     public function city()

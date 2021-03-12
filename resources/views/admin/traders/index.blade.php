@@ -69,6 +69,9 @@
                     <th>
                         {{ trans('cruds.trader.fields.city_name') }}
                     </th>
+                    <th>
+                        {{ trans('cruds.category.fields.type') }}
+                    </th>
                 </tr>
                 <tr>
                     <td>
@@ -115,6 +118,16 @@
                             @endforeach
                         </select>
                     </td>
+
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\Trader::TYPE_RADIO as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+
                 </tr>
                 </thead>
             </table>
@@ -182,6 +195,7 @@
                     {data: 'facebook_url', name: 'facebook_url'},
                     {data: 'whatsapp', name: 'whatsapp'},
                     {data: 'city_name', name: 'city.name',searchable: true},
+                    {data: 'type', name: 'type', searchable: true},
                 ],
                 orderCellsTop: true,
                 order: [[1, 'desc']],

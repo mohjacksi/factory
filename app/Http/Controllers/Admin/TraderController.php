@@ -94,6 +94,9 @@ class TraderController extends Controller
             $table->editColumn('whatsapp', function ($row) {
                 return $row->whatsapp ? $row->whatsapp : "";
             });
+            $table->editColumn('type', function ($row) {
+                return $row->type ? Trader::TYPE_RADIO[$row->type] : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder', 'images']);
 
@@ -176,14 +179,14 @@ class TraderController extends Controller
     {
         //abort_if(Gate::denies('trader_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $trader->delete();
+        $trader->forceDelete();
 
         return back();
     }
 
     public function massDestroy(MassDestroyTraderRequest $request)
     {
-        Trader::whereIn('id', request('ids'))->delete();
+        Trader::whereIn('id', request('ids'))->forceDelete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

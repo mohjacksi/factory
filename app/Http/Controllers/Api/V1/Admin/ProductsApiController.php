@@ -12,6 +12,7 @@ use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\Size;
+use App\Models\Trader;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +49,7 @@ class ProductsApiController extends Controller
 
         $details = $request['details'];
 
-            $name = $request['name'];
+        $name = $request['name'];
 
         $city_id = $request['city_id'];
 
@@ -74,6 +75,7 @@ class ProductsApiController extends Controller
 
         $SizeNames = $request['SizeNames'];
 
+        $TraderNames = $request['TraderNames'];
 
         if (isset($city_id)) {
             $productQuery = $productQuery->where('city_id', $city_id);
@@ -110,6 +112,21 @@ class ProductsApiController extends Controller
                 }
             }
             $productQuery = $productQuery->WhereHas('brand', function ($q) use ($arr) {
+                $q->whereIn('id', $arr);
+            });
+        }
+
+        if (isset($TraderNames)) {
+            if (!is_array($TraderNames))
+                $TraderNames = array($TraderNames);
+            $arr = [];
+            foreach ($TraderNames as $singleTrader) {
+                $brandsID = Trader::where('name', 'like', '%' . $singleTrader . '%')->pluck('id')->toArray();
+                foreach ($brandsID as $singleTraderId) {
+                    $arr[] = $singleTraderId;
+                }
+            }
+            $productQuery = $productQuery->WhereHas('trader', function ($q) use ($arr) {
                 $q->whereIn('id', $arr);
             });
         }
@@ -189,12 +206,12 @@ class ProductsApiController extends Controller
         if (isset($details)) {
             $productQuery = $productQuery->where('details', 'like', "%$details%");
         }
-    
+
 
         if (isset($name)) {
             $productQuery = $productQuery->where('name', 'like', "%$name%");
         }
-    
+
         if (isset($sub_product_service_type_id)) {
             $productQuery = $productQuery->where('sub_product_service_type_id', $sub_product_service_type_id);
         }
