@@ -23,7 +23,7 @@ class TraderApiController extends Controller
         $traderQuery = Trader::with('products', 'offers');
 
         $details = $request['details'];
-        $type = $request['type'ad];
+        $type = $request['type'];
 
         //abort_if(Gate::denies('category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if (isset($type)) {
