@@ -35,6 +35,7 @@ trait FirebaseFCM
                 ],
             ],
             'apns' => [
+                'priority' => 'high',
                 'payload' => [
                     'aps' => [
                         'sound' => 'default',
