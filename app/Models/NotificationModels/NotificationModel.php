@@ -24,7 +24,7 @@ class NotificationModel extends Model
     ];
 
 
-    protected $appends = array('model');
+    protected $appends = array('model', 'priority');
 
     public function getDataAttribute($value)
     {
@@ -43,6 +43,12 @@ class NotificationModel extends Model
         $model = new $className;
 
         return $model::where('id', $this->data->model_id)->first();
+    }
+
+    public function getPriorityAttribute()
+    {
+
+        return 'high';
     }
 
 
