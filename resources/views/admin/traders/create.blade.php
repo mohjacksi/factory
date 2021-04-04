@@ -52,8 +52,11 @@
             </div>
             <div class="form-group">
                 <label for="details">{{ trans('cruds.trader.fields.details') }}</label>
-                <input class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" type="text" name="details" id="details" value="{{ old('details', '') }}">
-                @if($errors->has('details'))
+{{--                <input class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" type="text" name="details" id="details" value="{{ old('details', '') }}">--}}
+                <textarea class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" type="text"
+                          name="details"
+                          id="details" >{{old('details', '') }}</textarea>
+            @if($errors->has('details'))
                     <div class="invalid-feedback">
                         {{ $errors->first('details') }}
                     </div>
