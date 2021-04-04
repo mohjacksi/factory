@@ -21,7 +21,7 @@ class Trader extends Model implements HasMedia
     ];
 
     const TYPE_RADIO = [
-        'service'    => 'خدمي',
+        'service' => 'خدمي',
         'commercial' => 'تجاري',
     ];
 
@@ -61,9 +61,9 @@ class Trader extends Model implements HasMedia
     {
         $files = $this->getMedia('images');
         $files->each(function ($item) {
-            $item->url       = $item->getUrl();
+            $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
+            $item->preview = $item->getUrl('preview');
         });
 
         return $files;
@@ -72,6 +72,11 @@ class Trader extends Model implements HasMedia
     public function products()
     {
         return $this->hasMany(Product::class, 'trader_id', 'id');
+    }
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class, 'trader_id', 'id');
     }
 
     public function offers()
@@ -94,5 +99,41 @@ class Trader extends Model implements HasMedia
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function getMainCategoriesAttribute()
+    {
+        $arr = [];
+        if ($this->products) {
+            foreach ($this->products as $product) {
+                $arr[] = $product->MainProductType;
+                $arr[] = $product->MainProductServiceType;
+            }
+        }
+        if ($this->departments) {
+            foreach ($this->departments as $department) {
+                $arr[] = $department->category;
+            }
+        }
+
+        return $arr;
+    }
+
+    public function getSubCategoriesAttribute()
+    {
+        $arr = [];
+        if ($this->products) {
+            foreach ($this->products as $product) {
+                $arr[] = $product->SubProductType;
+                $arr[] = $product->SubProductServiceType;
+            }
+        }
+        if ($this->departments) {
+            foreach ($this->departments as $department) {
+                $arr[] = $department->sub_category;
+            }
+        }
+
+        return $arr;
     }
 }

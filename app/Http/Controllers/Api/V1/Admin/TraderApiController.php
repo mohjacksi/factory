@@ -52,7 +52,7 @@ class TraderApiController extends Controller
     {
         //abort_if(Gate::denies('trader_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new TraderResource(Trader::findOrFail($trader)->load(['products', 'offers']));
+        return new TraderResource(Trader::findOrFail($trader)->append('main_categories','sub_categories')->load(['products', 'offers']));
     }
 
     public function update(UpdateTraderRequest $request, Trader $trader)
