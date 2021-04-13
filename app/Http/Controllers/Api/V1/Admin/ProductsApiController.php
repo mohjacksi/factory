@@ -229,7 +229,7 @@ class ProductsApiController extends Controller
                 $trader_id = array($trader_id);
             $productQuery = $productQuery->whereIn('trader_id', $trader_id);
         }
-        return new ProductResource($productQuery->latest()->get());
+        return new ProductResource($productQuery->whereNull('deleted_at')->latest()->get());
     }
 
     public function store(StoreProductRequest $request)

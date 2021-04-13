@@ -58,11 +58,12 @@ class OrdersApiController extends Controller
         $order = Order::create($request->all());
 
 
-        foreach ($request->order_products as $order_product) {
-            $productVariant = ProductVariant::findOrFail($order_product['product_variant_id']);
+        foreach ($request->order_products as $index => $order_product) {
+            $productVariant = ProductVariant::with('product:id,name')->findOrFail($order_product['product_variant_id']);
+
             $variant = $productVariant->variant;
             if ($variant->count < $order_product['quantity']) {
-                throw new ValidationException('عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name );
+                throw new ValidationException('عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name);
 
             }
             $variant->update([
