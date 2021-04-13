@@ -64,7 +64,7 @@ class OrdersApiController extends Controller
             if ($variant->count < $order_product['quantity']) {
 //                throw new ValidationException();
                 return response()->json([
-                   'messages' =>  'عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name
+                   'messages' =>  'Product Number is less than quantity required' . $productVariant->product->name
                 ]);
             }
             $variant->update([
