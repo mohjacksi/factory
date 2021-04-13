@@ -66,18 +66,21 @@ class NotificationsController extends Controller
             ]);
             $data['city_id'] = $single_city_id;
 
-            $users = User::where([
+            $users = User::with('firebaseToken')->where([
                 ['accept_notifications', 1],
                 ['city_id', $single_city_id]
             ])->get();
 
-            $allUsers = array_merge($allUsers, [$users]);
+            foreach ($users as $user) {
+                $allUsers[] = $user;
+            }
             $data['to'] = implode(',', $users->pluck('name')->toArray());
 
             \Illuminate\Support\Facades\Notification::send($users, new DBNotification($data));
 
 
         }
+
         /***********************************/
         $this->sendNotificationsFCM($allUsers, $data);
         /***********************************/
