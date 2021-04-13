@@ -62,8 +62,10 @@ class OrdersApiController extends Controller
             $variant = Variant::findOrFail($order_product['product_variant_id']);
             $productVariant = ProductVariant::where('variant_id',$variant->id)->first();
             if ($variant->count < $order_product['quantity']) {
-                throw new ValidationException('عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name);
-
+//                throw new ValidationException();
+                return response()->json([
+                   'messages' =>  'عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name
+                ]);
             }
             $variant->update([
                 'count' => $variant->count - $order_product['quantity']
