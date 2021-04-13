@@ -71,7 +71,7 @@ class NotificationsController extends Controller
                 ['city_id', $single_city_id]
             ])->get();
 
-            $allUsers = array_merge($allUsers, $users);
+            $allUsers = array_merge($allUsers, [$users]);
             $data['to'] = implode(',', $users->pluck('name')->toArray());
 
             \Illuminate\Support\Facades\Notification::send($users, new DBNotification($data));
