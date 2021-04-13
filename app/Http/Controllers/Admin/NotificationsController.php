@@ -47,7 +47,7 @@ class NotificationsController extends Controller
 
     public function store(StoreNotificationRequest $request)
     {
-
+//        dd($request->all());
         $data = [
             'title' => $request->title,
             'msg' => $request['content'],
@@ -55,6 +55,7 @@ class NotificationsController extends Controller
             'model_id' => $request->model_id,
         ];
 
+        $allUsers = [];
         foreach ($request->city_id as $index => $single_city_id) {
             Notification::create([
                 'title' => $request->title,
@@ -70,15 +71,17 @@ class NotificationsController extends Controller
                 ['city_id', $single_city_id]
             ])->get();
 
-            $data['to'] = implode(',',$users->pluck('name')->toArray());
+            $allUsers = array_merge($allUsers, $users);
+            $data['to'] = implode(',', $users->pluck('name')->toArray());
 
             \Illuminate\Support\Facades\Notification::send($users, new DBNotification($data));
 
-            /***********************************/
-            $this->sendNotificationsFCM($users, $data);
-            /***********************************/
 
         }
+        /***********************************/
+        $this->sendNotificationsFCM($allUsers, $data);
+        /***********************************/
+
 
         return redirect()->route('admin.notifications.index');
     }
@@ -96,7 +99,7 @@ class NotificationsController extends Controller
             'Job',
         ];
 
-        return view('admin.notifications.edit', compact('notification','models'));
+        return view('admin.notifications.edit', compact('notification', 'models'));
     }
 
     public function update(UpdateNotificationRequest $request, Notification $notification)
