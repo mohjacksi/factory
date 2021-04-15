@@ -28,7 +28,7 @@ trait FirebaseFCM
             'data' => array_merge($data,[
                 'title' => 'Yalla Service',
                 'body' => $textMessage,
-            ]) // optional
+            ]),// optional
 
             'android' => [
                 'priority' => 'high',
