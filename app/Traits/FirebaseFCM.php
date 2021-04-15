@@ -17,6 +17,7 @@ trait FirebaseFCM
     public function sendNotificationToDevices($textMessage, $data, array $tokens = [], $order_id = null, $topic = null)
     {
 
+
         $messaging = app('firebase.messaging');
         $config = [
             'notification' => [
@@ -24,7 +25,10 @@ trait FirebaseFCM
                 'body' => $textMessage,
 //                'order_id' => $order_id
             ],
-            'data' => $data, // optional
+            'data' => array_merge($data,[
+                'title' => 'Yalla Service',
+                'body' => $textMessage,
+            ]) // optional
 
             'android' => [
                 'priority' => 'high',
