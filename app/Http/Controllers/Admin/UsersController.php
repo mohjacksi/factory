@@ -20,7 +20,7 @@ class UsersController extends Controller
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = User::with(['roles'])->select(sprintf('%s.*', (new User)->table));
+            $query = User::with(['roles','city'])->select(sprintf('%s.*', (new User)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -49,6 +49,9 @@ class UsersController extends Controller
             });
             $table->editColumn('email', function ($row) {
                 return $row->email ? $row->email : "";
+            });
+            $table->addColumn('city', function ($row) {
+                return $row->city ? $row->city->name : "";
             });
 
             $table->editColumn('roles', function ($row) {

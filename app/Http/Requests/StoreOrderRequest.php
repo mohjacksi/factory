@@ -49,6 +49,9 @@ class StoreOrderRequest extends FormRequest
             'discount' => [
                 'numeric',
             ],
+            'confirmed' => [
+                'bool',
+            ],
         ];
     }
 }

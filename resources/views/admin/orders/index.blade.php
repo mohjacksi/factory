@@ -32,7 +32,13 @@
                             {{ trans('cruds.order.fields.coupon') }}
                         </th>
                         <th>
+                            {{ trans('cruds.order.fields.confirmed') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.order.fields.user') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.city') }}
                         </th>
                         <th>
                             {{ trans('cruds.order.fields.subtotal') }}
@@ -62,6 +68,12 @@
                         <td>
                         </td>
                         <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -137,7 +149,13 @@
                                 {{ $order->coupon->code ?? '' }}
                             </td>
                             <td>
+                                {{ $order->confirmed ?? '' }}
+                            </td>
+                            <td>
                                 {{ $order->user->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $order->user ? $order->user->city ? $order->user->city->name : '': '' }}
                             </td>
                             <td>
                                 {{ $order->subtotal ?? '' }}

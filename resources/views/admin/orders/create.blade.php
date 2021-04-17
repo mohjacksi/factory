@@ -86,6 +86,10 @@
                 </div>
 
 
+
+
+
+
                 <div class="form-group">
                     <label class="required" for="subtotal">{{ trans('cruds.order.fields.subtotal') }}</label>
                     <input class="form-control {{ $errors->has('subtotal') ? 'is-invalid' : '' }}" type="number"
@@ -158,6 +162,22 @@
                         </div>
                     @endif
                     <span class="help-block">{{ trans('cruds.order.fields.details_helper') }}</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check {{ $errors->has('confirmed') ? 'is-invalid' : '' }}">
+                        <input class="form-check-input" type="checkbox"  name="confirmed" id="confirmed"
+                               value="1"
+                            {{ old('confirmed', 0) == 1 ? 'checked' : '' }}>
+                        <label class="required form-check-label"
+                               for="confirmed">{{ trans('cruds.order.fields.confirmed') }}</label>
+                    </div>
+                    @if($errors->has('confirmed'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('confirmed') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.order.fields.confirmed_helper') }}</span>
                 </div>
 
 
