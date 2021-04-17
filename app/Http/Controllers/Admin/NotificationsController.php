@@ -47,7 +47,6 @@ class NotificationsController extends Controller
 
     public function store(StoreNotificationRequest $request)
     {
-//        dd($request->all());
         $data = [
             'title' => $request->title,
             'msg' => $request['content'],

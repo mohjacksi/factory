@@ -20,13 +20,13 @@ trait FirebaseFCM
 
         $messaging = app('firebase.messaging');
         $config = [
-            'notification' => [
-                'title' => 'Yalla Service',
-                'body' => $textMessage,
-//                'order_id' => $order_id
-            ],
+//            'notification' => [
+//                'title' => $data['title'],
+//                'body' => $textMessage,
+////                'order_id' => $order_id
+//            ],
             'data' => array_merge($data,[
-                'title' => 'Yalla Service',
+                'title' => $data['title'],
                 'body' => $textMessage,
             ]),// optional
 
