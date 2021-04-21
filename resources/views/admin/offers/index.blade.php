@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('styles')
+
+@endsection
 @section('content')
     @can('offer_create')
 
@@ -44,8 +47,24 @@
                         {{ trans('cruds.offer.fields.id') }}
                     </th>
                     <th>
+                        {{ trans('cruds.offer.fields.category') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.offer.fields.sub_category') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.offer.fields.type_of_category') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.offer.fields.trader') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.offer.fields.city') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.offer.fields.show_in_trader_page') }}
                     </th>
+
                     <th>
                         {{ trans('cruds.offer.fields.show_in_main_page') }}
                     </th>
@@ -58,15 +77,7 @@
                     <th>
                         {{ trans('cruds.offer.fields.description') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.category') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.sub_category') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.type_of_category') }}
-                    </th>
+
                     <th>
                         {{ trans('cruds.offer.fields.add_date') }}
                     </th>
@@ -82,13 +93,8 @@
                     <th>
                         {{ trans('cruds.offer.fields.price') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.trader') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.offer.fields.city') }}
-                    </th>
-                    <th>
+
+                    <th style=" width:100%">
                         {{ trans('cruds.offer.fields.images') }}
                     </th>
                 </tr>
@@ -98,23 +104,6 @@
                     <td>
                     </td>
                     <td>
-                    </td>
-                    <td>
-                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-
-                    <td>
-                    <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <select class="search">
@@ -141,19 +130,6 @@
                         </select>
                     </td>
                     <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach($traders as $key => $item)
@@ -170,6 +146,38 @@
                         </select>
                     </td>
                     <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+                    <td style=" width:700px;">
                     </td>
                 </tr>
                 </thead>
@@ -229,21 +237,23 @@
                     {data: 'placeholder', name: 'placeholder', orderable: false, searchable: false},
                     {data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false},
                     {data: 'id', name: 'id'},
-                    {data: 'show_in_trader_page', name: 'show_in_trader_page',searchable: true},
-                    {data: 'show_in_main_page', name: 'show_in_main_page',searchable: true},
-                    {data: 'show_in_main_offers_page', name: 'show_in_main_offers_page',searchable: true},
-                    {data: 'name', name: 'name'},
-                    {data: 'description', name: 'description'},
                     {data: 'category_name', name: 'category.name'},
                     {data: 'sub_category_name', name: 'sub_category.name'},
                     {data: 'type_of_category', name: 'category.type'},
+                    {data: 'trader_name', name: 'trader.name'},
+                    {data: 'city_name', name: 'city.name'},
+                    {data: 'show_in_trader_page', name: 'show_in_trader_page', searchable: true},
+                    {data: 'show_in_main_page', name: 'show_in_main_page', searchable: true},
+                    {data: 'show_in_main_offers_page', name: 'show_in_main_offers_page', searchable: true},
+                    {data: 'name', name: 'name'},
+                    {data: 'description', name: 'description'},
+
                     {data: 'add_date', name: 'add_date'},
                     {data: 'date_end', name: 'date_end'},
                     {data: 'phone_number', name: 'phone_number'},
                     {data: 'location', name: 'location'},
                     {data: 'price', name: 'price'},
-                    {data: 'trader_name', name: 'trader.name'},
-                    {data: 'city_name', name: 'city.name'},
+
                     {data: 'images', name: 'images', sortable: false, searchable: false},
                 ],
                 orderCellsTop: true,

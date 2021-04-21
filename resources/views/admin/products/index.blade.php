@@ -46,6 +46,27 @@
 
 
                     <th>
+                        {{ trans('cruds.product.fields.main_product_type_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.sub_product_type_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.main_product_service_type_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.sub_product_service_type_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.trader') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.department_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.product.fields.city_name') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.product.fields.is_available') }}
                     </th>
                     <th>
@@ -73,27 +94,6 @@
                         {{ trans('cruds.product.fields.price') }}
                     </th>
                     <th>
-                        {{ trans('cruds.product.fields.main_product_type_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.product.fields.sub_product_type_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.product.fields.main_product_service_type_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.product.fields.sub_product_service_type_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.product.fields.trader') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.product.fields.department_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.product.fields.city_name') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.product.fields.show_trader_name') }}
                     </th>
                     <th>
@@ -115,39 +115,6 @@
                     <td>
                     </td>
                     <td>
-                    </td>
-
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($brands as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
-
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <select class="search">
@@ -205,6 +172,40 @@
                             @endforeach
                         </select>
                     </td>
+
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($brands as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                    </td>
+
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
 
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -287,6 +288,14 @@
                     {data: 'placeholder', name: 'placeholder', orderable: false, searchable: false},
                     {data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false},
                     {data: 'id', name: 'id'},
+
+                    {data: 'main_product_type_name', name: 'MainProductType.name'},
+                    {data: 'sub_product_type_name', name: 'SubProductType.name'},
+                    {data: 'main_product_service_type_name', name: 'MainProductServiceType.name'},
+                    {data: 'sub_product_service_type_name', name: 'MainProductServiceType.name'},
+                    {data: 'trader_name', name: 'trader.name'},
+                    {data: 'department_name', name: 'department.name'},
+                    {data: 'city_name', name: 'city.name'},
                     {data: 'is_available', name: 'is_available'},
                     {data: 'name', name: 'name'},
                     {data: 'brand_name', name: 'brand.name'},
@@ -295,13 +304,6 @@
                     {data: 'show_in_main_page', name: 'show_in_main_page'},
                     {data: 'image', name: 'image', sortable: false, searchable: false},
                     {data: 'price', name: 'price'},
-                    {data: 'main_product_type_name', name: 'MainProductType.name'},
-                    {data: 'sub_product_type_name', name: 'SubProductType.name'},
-                    {data: 'main_product_service_type_name', name: 'MainProductServiceType.name'},
-                    {data: 'sub_product_service_type_name', name: 'MainProductServiceType.name'},
-                    {data: 'trader_name', name: 'trader.name'},
-                    {data: 'department_name', name: 'department.name'},
-                    {data: 'city_name', name: 'city.name'},
                     {data: 'show_trader_name', name: 'show_trader_name'},
                     {data: 'details', name: 'details'},
                     {data: 'detailed_title', name: 'detailed_title'},

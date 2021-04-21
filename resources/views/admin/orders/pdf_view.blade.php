@@ -87,7 +87,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    {{$order->user->phone_number}}<br>
+                                    {{$order->phone_number}}<br>
                                     {{$order->address}}
                                 </td>
                                 <td>
