@@ -30,14 +30,14 @@ trait FirebaseFCM
                 'body' => $textMessage,
             ]),// optional
 
-            'android' => [
-                'priority' => 'high',
-                'notification' => [
-                    'default_vibrate_timings' => true,
-                    'default_sound' => true,
-                    'notification_priority' => 'PRIORITY_HIGH' // PRIORITY_LOW , PRIORITY_DEFAULT , PRIORITY_HIGH , PRIORITY_MAX
-                ],
-            ],
+            // 'android' => [
+            //     'priority' => 'high',
+            //     'notification' => [
+            //         'default_vibrate_timings' => true,
+            //         'default_sound' => true,
+            //         'notification_priority' => 'PRIORITY_HIGH' // PRIORITY_LOW , PRIORITY_DEFAULT , PRIORITY_HIGH , PRIORITY_MAX
+            //     ],
+            // ],
             'apns' => [
 //                'priority' => 'high',
                 'payload' => [
