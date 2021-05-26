@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropColumnSizeInVariantsTable extends Migration
+class AddConfirmedColumnToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class DropColumnSizeInVariantsTable extends Migration
      */
     public function up()
     {
-        Schema::table('variants', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
-            $table->dropColumn('color');
-            $table->dropColumn('size');
+            $table->boolean('confirmed')->default(0)->after('id');
         });
     }
 
@@ -27,7 +26,7 @@ class DropColumnSizeInVariantsTable extends Migration
      */
     public function down()
     {
-        Schema::table('variants', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
         });
     }

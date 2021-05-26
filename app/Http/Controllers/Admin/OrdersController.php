@@ -37,9 +37,6 @@ class OrdersController extends Controller
     {
         //abort_if(Gate::denies('orders_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        // $product_variants = ProductVariant::whereHas('product', function ($q) {
-        //     $q->whereNull('deleted_at');
-        // })->get()->load('product', 'variant');
         $product_variants = ProductVariant::all();
 
         $coupons = Coupon::all()->pluck('code', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -55,6 +52,8 @@ class OrdersController extends Controller
 
         DB::beginTransaction();
         try {
+
+
             $order = Order::create($request->all());
 
 
@@ -71,17 +70,17 @@ class OrdersController extends Controller
 
                 }
             }
-
             foreach ($request->order_products as $product_variant) {
 
-                $productVariant = ProductVariant::findOrFail($product_variant['product_variant_id']);
+                $productVariant = ProductVariant::findOrFail($product_variant);
                 $variant = $productVariant->variant;
-                if ($variant->count < $product_variant['quantity']) {
+//                if ($variant->count < $product_variant['quantity']) {
+                if ($variant->count < 1) {
                     throw new ValidationException('عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name );
-
                 }
                 $variant->update([
-                    'count' => $variant->count - $product_variant['quantity']
+//                    'count' => $variant->count - $product_variant['quantity']
+                    'count' => $variant->count - 1
                 ]);
 
                 OrderProduct::create([
@@ -106,6 +105,7 @@ class OrdersController extends Controller
 
     public function edit(Order $order)
     {
+
         //abort_if(Gate::denies('orders_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $product_variants = ProductVariant::all()->load('product', 'variant');
@@ -120,6 +120,9 @@ class OrdersController extends Controller
 
     public function update(UpdateOrderRequest $request, Order $order)
     {
+        $is_confirmed = $request->confirmed;
+        $request['confirmed'] = $request->confirmed ? 1: 0;
+
         $order->update($request->all());
 
         $order_product_ids = $order->OrderProducts->pluck('id');

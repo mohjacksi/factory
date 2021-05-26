@@ -68,7 +68,9 @@ class CouponsController extends Controller
             $table->editColumn('min_total', function ($row) {
                 return $row->min_total ? $row->min_total : '';
             });
-
+            $table->editColumn('expire_date', function ($row) {
+                return $row->expire_date ? $row->expire_date : '';
+            });
             $table->rawColumns(['actions', 'placeholder']);
 
             return $table->make(true);

@@ -43,6 +43,7 @@ class DBNotification extends Notification
         return [
             'title' => $this->data['msg'],
             'msg' => $this->data['msg'],
+            'priority' => 'high',
             'to' => $this->data['to'],
             'model_id' => array_key_exists('model_id', $this->data) ? $this->data['model_id'] : null,
             'model_type' => array_key_exists('model_type', $this->data) ? $this->data['model_type'] : null,];

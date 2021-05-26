@@ -43,6 +43,9 @@
                     <th>
                         {{ trans('cruds.coupon.fields.min_total') }}
                     </th>
+                    <th>
+                    تاريخ الانتهاء
+                    </th>
                 </tr>
                 <tr>
                     <td>
@@ -66,6 +69,8 @@
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
                     </td>
 {{--                    <td>--}}
 {{--                        <select class="search" strict="true">--}}
@@ -136,6 +141,7 @@
 { data: 'fixed_discount', name: 'fixed_discount' },
 { data: 'max_usage_per_user', name: 'max_usage_per_user' },
 { data: 'min_total', name: 'min_total' },
+{ data: 'expire_date', name: 'expire_date' },
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],

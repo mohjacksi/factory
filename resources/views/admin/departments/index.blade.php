@@ -38,15 +38,40 @@
 
                     </th>
 
+
                     <th>
                         &nbsp;
                     </th>
                     {{--                    <th>--}}
                     {{--                        {{ trans('cruds.department.fields.id') }}--}}
                     {{--                    </th>--}}
+
                     <th>
                         {{ trans('cruds.department.fields.item_number') }}
                     </th>
+                    <th>
+                        {{ trans('cruds.department.fields.city') }}
+                    </th>
+
+                    <th>
+                        {{ trans('cruds.department.fields.type_of_category') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.department.fields.name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.department.fields.trader') }}
+                    </th>
+
+                    <th>
+                        {{ trans('cruds.department.fields.category') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.department.fields.sub_category') }}
+                    </th>
+
+
+
                     <th>
                         {{ trans('cruds.department.fields.show_in_main_page') }}
                     </th>
@@ -55,31 +80,13 @@
                         {{ trans('cruds.department.fields.show_in_main_departments_page') }}
                     </th>
                     <th>
-                        {{ trans('cruds.department.fields.name') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.department.fields.logo') }}
                     </th>
                     <th>
                         {{ trans('cruds.department.fields.about') }}
                     </th>
                     <th>
-                        {{ trans('cruds.department.fields.city') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.department.fields.phone_number') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.department.fields.category') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.department.fields.sub_category') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.department.fields.type_of_category') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.department.fields.trader') }}
                     </th>
                 </tr>
                 <tr>
@@ -92,23 +99,7 @@
                     {{--                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">--}}
                     {{--                    </td>--}}
 
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
 
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
@@ -121,8 +112,26 @@
                             @endforeach
                         </select>
                     </td>
+
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($constants as $key => $item)
+                                <option value="{{ $constants_flips[$item] }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($traders as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
                     </td>
 
 
@@ -144,23 +153,32 @@
                         </select>
                     </td>
 
+
                     <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($constants as $key => $item)
-                                <option value="{{ $constants_flips[$item] }}">{{ $item }}</option>
-                            @endforeach
-                        </select>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
 
                     <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($traders as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
+
+
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
+
+
+
 
                 </tr>
                 </thead>
@@ -219,19 +237,19 @@
                 columns: [
                     {data: 'placeholder', name: 'placeholder', orderable: false, searchable: false},
                     {data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false},
-                    // {data: 'id', name: 'id'},
                     {data: 'item_number', name: 'item_number', sortable: true, searchable: true},
-                    {data: 'show_in_main_page', name: 'show_in_main_page'},
-                    {data: 'show_in_main_departments_page', name: 'show_in_main_departments_page'},
-                    {data: 'name', name: 'name'},
-                    {data: 'logo', name: 'logo', sortable: false, searchable: false},
-                    {data: 'about', name: 'about'},
                     {data: 'city_name', name: 'city.name'},
-                    {data: 'phone_number', name: 'phone_number'},
+                    {data: 'type_of_category', name: 'category.type'},
+                    {data: 'name', name: 'name'},
+                    {data: 'trader_name', name: 'trader.name'},
                     {data: 'category_name', name: 'category.name'},
                     {data: 'sub_category_name', name: 'sub_category.name'},
-                    {data: 'type_of_category', name: 'category.type'},
-                    {data: 'trader_name', name: 'trader.name'},
+                    {data: 'show_in_main_page', name: 'show_in_main_page'},
+                    {data: 'show_in_main_departments_page', name: 'show_in_main_departments_page'},
+                    {data: 'logo', name: 'logo', sortable: false, searchable: false},
+                    {data: 'about', name: 'about'},
+                    {data: 'phone_number', name: 'phone_number'},
+
                 ],
                 orderCellsTop: true,
                 order: [[1, 'desc']],

@@ -40,6 +40,7 @@ class Order extends Model
         'phone_number',
         'subtotal',
         'total',
+        'confirmed',
         'discount',
     ];
 

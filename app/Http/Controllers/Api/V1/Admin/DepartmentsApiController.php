@@ -36,7 +36,7 @@ class DepartmentsApiController extends Controller
     public function index(Request $request)
     {
         //abort_if(Gate::denies('department_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $departmentQueryBuilder = Department::filter($this->filter)->with('city', 'category', 'sub_category');
+        $departmentQueryBuilder = Department::filter($this->filter)->with('city', 'category', 'sub_category','trader');
 
         $city_id = $request['city_id'];
 
@@ -45,6 +45,7 @@ class DepartmentsApiController extends Controller
         $sub_category_id = $request['sub_category_id'];
 
         $about = $request['about'];
+        $TraderNames = $request['TraderNames'];
 
         if (isset($city_id)) {
             $departmentQueryBuilder = $departmentQueryBuilder->where('city_id', $city_id);
@@ -57,6 +58,22 @@ class DepartmentsApiController extends Controller
         }
         if (isset($about)) {
             $departmentQueryBuilder = $departmentQueryBuilder->where('about', 'like', "%" . $about . "%");
+        }
+
+        if (isset($TraderNames)) {
+
+            if (!is_array($TraderNames))
+                $TraderNames = array($TraderNames);
+            $arr = [];
+            foreach ($TraderNames as $singleTrader) {
+                $tradersID = Trader::where('name', 'like', '%' . $singleTrader . '%')->pluck('id')->toArray();
+                foreach ($tradersID as $singleTraderId) {
+                    $arr[] = $singleTraderId;
+                }
+            }
+            $departmentQueryBuilder = $departmentQueryBuilder->WhereHas('trader', function ($q) use ($arr) {
+                $q->whereIn('id', $arr);
+            });
         }
 
         return new DepartmentResource($departmentQueryBuilder->orderBy('created_at', 'desc')->get());

@@ -32,6 +32,13 @@
                     <th>
                         {{ trans('cruds.job.fields.id') }}
                     </th>
+
+                    <th>
+                        {{ trans('cruds.job.fields.city') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.job.fields.specialization') }}
+                    </th>
                     <th>
                         {{ trans('cruds.job.fields.approved') }}
                     </th>
@@ -42,16 +49,10 @@
                         {{ trans('cruds.job.fields.image') }}
                     </th>
                     <th>
-                        {{ trans('cruds.job.fields.city') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.job.fields.add_date') }}
                     </th>
                     <th>
                         {{ trans('cruds.job.fields.details') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.job.fields.specialization') }}
                     </th>
                     <th>
                         {{ trans('cruds.job.fields.whats_app_number') }}
@@ -69,25 +70,12 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach($cities as $key => $item)
                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <select class="search">
@@ -97,6 +85,21 @@
                             @endforeach
                         </select>
                     </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                    </td>
+
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
@@ -161,13 +164,13 @@
                     {data: 'placeholder', name: 'placeholder', orderable: false, searchable: false},
                     {data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false},
                     {data: 'id', name: 'id'},
+                    {data: 'city_name', name: 'city.name'},
+                    {data: 'specialization_name', name: 'specialization.name'},
                     {data: 'approved', name: 'approved'},
                     {data: 'name', name: 'name'},
                     {data: 'image', name: 'image', sortable: false, searchable: false},
-                    {data: 'city_name', name: 'city.name'},
                     {data: 'add_date', name: 'add_date'},
                     {data: 'whats_app_number', name: 'whats_app_number'},
-                    {data: 'specialization_name', name: 'specialization.name'},
                     {data: 'details', name: 'details'},
                     {data: 'email', name: 'email'},
                 ],

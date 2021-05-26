@@ -43,6 +43,12 @@
                         {{ trans('cruds.trader.fields.id') }}
                     </th>
                     <th>
+                        {{ trans('cruds.trader.fields.city_name') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.category.fields.type') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.trader.fields.activeness') }}
                     </th>
                     <th>
@@ -66,9 +72,7 @@
                     <th>
                         {{ trans('cruds.trader.fields.whatsapp') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.trader.fields.city_name') }}
-                    </th>
+
                 </tr>
                 <tr>
                     <td>
@@ -77,6 +81,23 @@
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <select class="search">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach($cities as $key => $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+
+                    <td>
+                        <select class="search" strict="true">
+                            <option value>{{ trans('global.all') }}</option>
+                            @foreach(App\Models\Trader::TYPE_RADIO as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -107,14 +128,8 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
 
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($cities as $key => $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
+
+
                 </tr>
                 </thead>
             </table>
@@ -173,6 +188,8 @@
                     {data: 'placeholder', name: 'placeholder', orderable: false, searchable: false},
                     {data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false},
                     {data: 'id', name: 'id'},
+                    {data: 'city_name', name: 'city.name',searchable: true},
+                    {data: 'type', name: 'type', searchable: true},
                     {data: 'activeness', name: 'activeness'},
                     {data: 'images', name: 'images', sortable: false, searchable: false},
                     {data: 'name', name: 'name'},
@@ -181,7 +198,7 @@
                     {data: 'details', name: 'details'},
                     {data: 'facebook_url', name: 'facebook_url'},
                     {data: 'whatsapp', name: 'whatsapp'},
-                    {data: 'city_name', name: 'city.name',searchable: true},
+
                 ],
                 orderCellsTop: true,
                 order: [[1, 'desc']],

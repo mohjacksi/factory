@@ -79,6 +79,7 @@
                             <thead>
                             <tr>
                                 <td><strong>رقم التليفون</strong></td>
+                                <td><strong>المستخدم</strong></td>
                                 <td class="text-center"><strong>تاريخ الطلب</strong></td>
                                 <td class="text-center"><strong>تفاصيل الطلب</strong></td>
                             </tr>
@@ -86,8 +87,11 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    {{$order->user->name}}<br>
+                                    {{$order->phone_number}}<br>
                                     {{$order->address}}
+                                </td>
+                                <td>
+                                    {{$order->user->name}}<br>
                                 </td>
 
                                 <td>
@@ -127,7 +131,7 @@
                                 <td class="text-center"><strong>اللون</strong></td>
                                 <td class="text-center"><strong>الحجم</strong></td>
                                 <td class="text-center"><strong>السعر</strong></td>
-                                <td class="text-center" ><strong>الكمية</strong></td>
+                                <td class="text-center"><strong>الكمية</strong></td>
                                 <td class="text-right"><strong>القيمة</strong></td>
                             </tr>
                             </thead>

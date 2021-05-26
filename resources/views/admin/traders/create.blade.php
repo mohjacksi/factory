@@ -52,8 +52,11 @@
             </div>
             <div class="form-group">
                 <label for="details">{{ trans('cruds.trader.fields.details') }}</label>
-                <input class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" type="text" name="details" id="details" value="{{ old('details', '') }}">
-                @if($errors->has('details'))
+{{--                <input class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" type="text" name="details" id="details" value="{{ old('details', '') }}">--}}
+                <textarea class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" type="text"
+                          name="details"
+                          id="details" >{{old('details', '') }}</textarea>
+            @if($errors->has('details'))
                     <div class="invalid-feedback">
                         {{ $errors->first('details') }}
                     </div>
@@ -112,6 +115,22 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.trader.fields.city_name_helper') }}</span>
+            </div>
+
+            <div class="form-group">
+                <label class="required">{{ trans('cruds.trader.fields.type') }}</label>
+                @foreach(App\Models\Trader::TYPE_RADIO as $key => $label)
+                    <div class="form-check {{ $errors->has('type') ? 'is-invalid' : '' }}">
+                        <input class="form-check-input" type="radio" id="type_{{ $key }}" name="type" value="{{ $key }}" {{ old('type', '') === (string) $key ? 'checked' : '' }} required>
+                        <label class="form-check-label" for="type_{{ $key }}">{{ $label }}</label>
+                    </div>
+                @endforeach
+                @if($errors->has('type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('type') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.trader.fields.type_helper') }}</span>
             </div>
 
 

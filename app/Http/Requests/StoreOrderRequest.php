@@ -23,7 +23,7 @@ class StoreOrderRequest extends FormRequest
                 'array'
             ],
             'order_products.*.product_variant_id' => [
-                'exists:product_variant,id'
+                'exists:variants,id'
             ],
 //            'user_id' => [
 ////                'required',
@@ -48,6 +48,9 @@ class StoreOrderRequest extends FormRequest
             ],
             'discount' => [
                 'numeric',
+            ],
+            'confirmed' => [
+                'bool',
             ],
         ];
     }

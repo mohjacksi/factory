@@ -110,6 +110,7 @@ Route::group(
         // Traders
         Route::post('traders/media', 'TraderApiController@storeMedia')->name('traders.storeMedia');
         Route::apiResource('traders', 'TraderApiController');
+        Route::put('update_trader_city', 'TraderApiController@updateCity');
 
         // Products
         Route::post('products/media', 'ProductsApiController@storeMedia')->name('products.storeMedia');

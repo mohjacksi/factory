@@ -17,6 +17,12 @@ class Trader extends Model implements HasMedia
 
     protected $appends = [
         'images',
+        'type_of_trader',
+    ];
+
+    const TYPE_RADIO = [
+        'service' => 'خدمي',
+        'commercial' => 'تجاري',
     ];
 
     protected $dates = [
@@ -28,6 +34,7 @@ class Trader extends Model implements HasMedia
     protected $fillable = [
         'name',
         'city_id',
+        'type',
         'address',
         'activeness',
         'phone_number',
@@ -54,9 +61,9 @@ class Trader extends Model implements HasMedia
     {
         $files = $this->getMedia('images');
         $files->each(function ($item) {
-            $item->url       = $item->getUrl();
+            $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
+            $item->preview = $item->getUrl('preview');
         });
 
         return $files;
@@ -67,13 +74,66 @@ class Trader extends Model implements HasMedia
         return $this->hasMany(Product::class, 'trader_id', 'id');
     }
 
+    public function departments()
+    {
+        return $this->hasMany(Department::class, 'trader_id', 'id');
+    }
+
     public function offers()
     {
         return $this->hasMany(Offer::class, 'trader_id', 'id');
     }
 
+
+    /**
+     * @return
+     */
+    public function getTypeOfTraderAttribute()
+    {
+        $trader = new \ReflectionClass(new Trader);
+//        $constants = array_flip($trader->getConstants());
+        $constants = $trader->getConstants();
+        return $this->trader ? $constants['TYPE_RADIO'][$this->trader->type] : '';
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function getMainCategoriesAttribute()
+    {
+        $arr = [];
+        if ($this->products) {
+            foreach ($this->products as $product) {
+                $arr[] = $product->MainProductType;
+                $arr[] = $product->MainProductServiceType;
+            }
+        }
+        if ($this->departments) {
+            foreach ($this->departments as $department) {
+                $arr[] = $department->category;
+            }
+        }
+
+        return $arr;
+    }
+
+    public function getSubCategoriesAttribute()
+    {
+        $arr = [];
+        if ($this->products) {
+            foreach ($this->products as $product) {
+                $arr[] = $product->SubProductType;
+                $arr[] = $product->SubProductServiceType;
+            }
+        }
+        if ($this->departments) {
+            foreach ($this->departments as $department) {
+                $arr[] = $department->sub_category;
+            }
+        }
+
+        return $arr;
     }
 }

@@ -47,7 +47,6 @@ class NotificationsController extends Controller
 
     public function store(StoreNotificationRequest $request)
     {
-
         $data = [
             'title' => $request->title,
             'msg' => $request['content'],
@@ -55,6 +54,7 @@ class NotificationsController extends Controller
             'model_id' => $request->model_id,
         ];
 
+        $allUsers = [];
         foreach ($request->city_id as $index => $single_city_id) {
             Notification::create([
                 'title' => $request->title,
@@ -65,20 +65,25 @@ class NotificationsController extends Controller
             ]);
             $data['city_id'] = $single_city_id;
 
-            $users = User::where([
+            $users = User::with('firebaseToken')->where([
                 ['accept_notifications', 1],
                 ['city_id', $single_city_id]
             ])->get();
 
-            $data['to'] = implode(',',$users->pluck('name')->toArray());
+            foreach ($users as $user) {
+                $allUsers[] = $user;
+            }
+            $data['to'] = implode(',', $users->pluck('name')->toArray());
 
             \Illuminate\Support\Facades\Notification::send($users, new DBNotification($data));
 
-            /***********************************/
-            $this->sendNotificationsFCM($users, $data);
-            /***********************************/
 
         }
+
+        /***********************************/
+        $this->sendNotificationsFCM($allUsers, $data);
+        /***********************************/
+
 
         return redirect()->route('admin.notifications.index');
     }
@@ -96,7 +101,7 @@ class NotificationsController extends Controller
             'Job',
         ];
 
-        return view('admin.notifications.edit', compact('notification','models'));
+        return view('admin.notifications.edit', compact('notification', 'models'));
     }
 
     public function update(UpdateNotificationRequest $request, Notification $notification)

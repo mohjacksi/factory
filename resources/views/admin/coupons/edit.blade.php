@@ -102,6 +102,17 @@
                     @endif
                     <span class="help-block">{{ trans('cruds.coupon.fields.fixed_discount_helper') }}</span>
                 </div>
+                <div class="form-group">
+                    <label class="required" for="expire_date">تاريخ الانتهاء</label>
+                    <input class="form-control date {{ $errors->has('expire_date') ? 'is-invalid' : '' }}" type="text"
+                           name="expire_date" id="expire_date" value="{{ old('expire_date', $coupon->expire_date??0) }}" required>
+                    @if($errors->has('expire_date'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('expire_date') }}
+                        </div>
+                    @endif
+                </div>
+
 
                 <div class="form-group">
                     <button class="btn btn-danger" type="submit">

@@ -17,15 +17,19 @@ trait FirebaseFCM
     public function sendNotificationToDevices($textMessage, $data, array $tokens = [], $order_id = null, $topic = null)
     {
 
+
         $messaging = app('firebase.messaging');
         $config = [
-            'notification' => [
-                'title' => 'Car Viseta',
+//            'notification' => [
+//                'title' => $data['title'],
+//                'body' => $textMessage,
+////                'order_id' => $order_id
+//            ],
+            'data' => array_merge($data,[
+                'title' => $data['title'],
                 'body' => $textMessage,
-//                'order_id' => $order_id
-            ],
-            'data' => $data, // optional
-
+            ]),// optional
+/*
             'android' => [
                 'priority' => 'high',
                 'notification' => [
@@ -34,7 +38,9 @@ trait FirebaseFCM
                     'notification_priority' => 'PRIORITY_HIGH' // PRIORITY_LOW , PRIORITY_DEFAULT , PRIORITY_HIGH , PRIORITY_MAX
                 ],
             ],
-            'apns' => [
+*/
+			'apns' => [
+//                'priority' => 'high',
                 'payload' => [
                     'aps' => [
                         'sound' => 'default',
@@ -89,3 +95,5 @@ trait FirebaseFCM
 
 
 }
+
+

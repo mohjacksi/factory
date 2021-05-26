@@ -27,6 +27,7 @@ class Coupon extends Model
      * @var array
      */
     protected $fillable = [
+        'expire_date',
         'code',
         'percentage_discount',
         'fixed_discount',

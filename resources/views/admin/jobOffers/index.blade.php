@@ -28,6 +28,12 @@
                         {{ trans('cruds.jobOffer.fields.id') }}
                     </th>
                     <th>
+                        {{ trans('cruds.jobOffer.fields.specialization') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.jobOffer.fields.city') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.jobOffer.fields.name') }}
                     </th>
                     <th>
@@ -47,12 +53,6 @@
                     </th>
                     <th>
                         {{ trans('cruds.jobOffer.fields.approved') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.jobOffer.fields.specialization') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.jobOffer.fields.city') }}
                     </th>
                     <th>
                         {{ trans('cruds.jobOffer.fields.add_date') }}
@@ -76,24 +76,6 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach($specializations as $key => $item)
@@ -109,6 +91,25 @@
                             @endforeach
                         </select>
                     </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+
                     <td>
                     </td>
                     <td>
@@ -179,6 +180,8 @@
                     {data: 'actions', name: '{{ trans('global.actions') }}', orderable: false, searchable: false},
 
                     {data: 'id', name: 'id'},
+                    {data: 'specialization_name', name: 'specialization.name'},
+                    {data: 'city_name', name: 'city.name'},
                     {data: 'name', name: 'name'},
                     {data: 'photo', name: 'photo', sortable: false, searchable: false},
                     {data: 'email', name: 'email'},
@@ -186,8 +189,7 @@
                     {data: 'details', name: 'details'},
                     {data: 'cv', name: 'cv', sortable: false, searchable: false},
                     {data: 'approved', name: 'approved'},
-                    {data: 'specialization_name', name: 'specialization.name'},
-                    {data: 'city_name', name: 'city.name'},
+
                     {data: 'add_date', name: 'add_date'},
                     {data: 'about', name: 'about'},
                     {data: 'age', name: 'age'},

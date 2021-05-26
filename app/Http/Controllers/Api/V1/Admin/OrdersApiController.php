@@ -58,24 +58,27 @@ class OrdersApiController extends Controller
         $order = Order::create($request->all());
 
 
-        foreach ($request->order_products as $order_product) {
-            $productVariant = ProductVariant::findOrFail($order_product['product_variant_id']);
-            $variant = $productVariant->variant;
+        foreach ($request->order_products as $index => $order_product) {
+            $variant = Variant::findOrFail($order_product['product_variant_id']);
+            $productVariant = ProductVariant::where('variant_id',$variant->id)->first();
             if ($variant->count < $order_product['quantity']) {
-                throw new ValidationException('عدد المنتج المطلوب أكبر من المُتاح لدينا ' . $productVariant->product->name );
-
+//                throw new ValidationException();
+                return response()->json([
+                   'messages' =>  'Product Number is less than quantity required' . $productVariant->product->name
+                ]);
             }
             $variant->update([
                 'count' => $variant->count - $order_product['quantity']
             ]);
             OrderProduct::create([
 
-                'product_variant_id' => $order_product['product_variant_id'],
+                'product_variant_id' => $productVariant->id,
 
                 'order_id' => $order->id,
                 // todo
                 'quantity' => $order_product['quantity'],
             ]);
+//            dd();
         }
 
         DB::commit();

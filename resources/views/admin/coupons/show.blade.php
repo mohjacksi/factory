@@ -72,6 +72,15 @@
                             {{ $coupon->min_total  }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            تاريخ الانتهاء
+                            </th>
+                        <td>
+                            {{ $coupon->expire_date  }}
+                        </td>
+                    </tr>
+
                 </tbody>
             </table>
             <div class="form-group">

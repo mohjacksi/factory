@@ -91,6 +91,14 @@
                             {{ $trader->whatsapp }}
                         </td>
                     </tr>
+                    tr>
+                    <th>
+                        {{ trans('cruds.trader.fields.type') }}
+                    </th>
+                    <td>
+                        {{ App\Models\Trader::TYPE_RADIO[$trader->type] ?? '' }}
+                    </td>
+                    </tr>
                     <tr>
                         <th>
                             {{ trans('cruds.trader.fields.city_name') }}
