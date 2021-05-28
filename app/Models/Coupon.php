@@ -33,7 +33,13 @@ class Coupon extends Model
         'fixed_discount',
         'max_usage_per_user',
         'min_total',
+        'trader_id',
+
     ];
+    public function trader()
+    {
+        return $this->belongsTo(Trader::class, 'trader_id');
+    }
 
     /**
      * it defines foreign key in relations.

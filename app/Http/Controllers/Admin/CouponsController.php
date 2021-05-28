@@ -12,7 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
-
+use App\Models\Trader;
 class CouponsController extends Controller
 {
     protected $repo;
@@ -82,8 +82,9 @@ class CouponsController extends Controller
     public function create()
     {
         //abort_if(Gate::denies('coupon_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $traders = Trader::get();
 
-        return view('admin.coupons.create');
+        return view('admin.coupons.create', compact('traders'));
     }
 
     public function store(StoreCouponRequest $request)
@@ -96,8 +97,9 @@ class CouponsController extends Controller
     public function edit(Coupon $coupon)
     {
         //abort_if(Gate::denies('coupon_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $traders = Trader::get();
 
-        return view('admin.coupons.edit', compact('coupon'));
+        return view('admin.coupons.edit', compact('coupon', 'traders'));
     }
 
     public function update(UpdateCouponRequest $request, Coupon $coupon)

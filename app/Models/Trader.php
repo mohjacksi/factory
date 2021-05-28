@@ -83,6 +83,10 @@ class Trader extends Model implements HasMedia
     {
         return $this->hasMany(Offer::class, 'trader_id', 'id');
     }
+    public function coupon()
+    {
+        return $this->hasMany(Coupon::class, 'trader_id', 'id');
+    }
 
 
     /**

@@ -11,6 +11,24 @@
                   enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
+                <div class="form-group" id="div_trader_id" >
+                    <label for="trader_id">{{ trans('cruds.offer.fields.trader') }}</label>
+                    <select class="form-control select2 {{ $errors->has('trader') ? 'is-invalid' : '' }}"
+                            name="trader_id" id="trader_id">
+                        @foreach($traders as $id => $trader)
+                            <option
+                                value="{{ $id }}" {{ (old('trader_id') ? old('trader_id') : $coupon->trader_id ?? '') == $id ? 'selected' : '' }}>{{  $trader->name }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('trader'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('trader') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.offer.fields.trader_helper') }}</span>
+                </div>
+
+
                 <div class="form-group">
                     <label class="required" for="code">{{ trans('cruds.coupon.fields.code') }}</label>
                     <input class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" type="text" name="code"
