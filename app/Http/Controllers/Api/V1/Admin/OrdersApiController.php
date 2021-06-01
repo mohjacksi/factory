@@ -43,7 +43,7 @@ class OrdersApiController extends Controller
 
         if ($request->coupon_id) {
             $coupon = Coupon::findOrFail($request->coupon_id);
-            if (!$coupon || $coupon->max_usage_per_user <= 0) {
+            if (!$coupon || $coupon->max_usage_per_user <= 0 || Carbon::now()->gt($coupon->expire_date)) {
                 return response()->json([
                     'message' => 'الكوبون غير صالح!'
                 ]);
