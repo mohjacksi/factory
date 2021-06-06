@@ -15,7 +15,7 @@
                             name="trader_id" id="trader_id">
                         @foreach($traders as $id => $trader)
                             <option
-                                value="{{ $id }}" {{ old('trader_id') == $id ? 'selected' : '' }}>{{  $trader->name }}</option>
+                                value="{{ $trader->id }}" {{ old('trader_id') == $id ? 'selected' : '' }}>{{  $trader->name }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('trader'))
