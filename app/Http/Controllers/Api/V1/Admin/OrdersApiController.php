@@ -61,7 +61,7 @@ class OrdersApiController extends Controller
         foreach ($request->order_products as $index => $order_product) {
             $variant = Variant::findOrFail($order_product['product_variant_id']);
             $productVariant = ProductVariant::where('variant_id',$variant->id)->first();
-            if ($variant->count < $order_product['quantity']) {
+            if (false && $variant->count < $order_product['quantity']) { // false added to stop checking stock number
 //                throw new ValidationException();
                 return response()->json([
                    'messages' =>  'Product Number is less than quantity required' . $productVariant->product->name
